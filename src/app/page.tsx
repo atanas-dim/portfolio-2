@@ -59,7 +59,7 @@ export default function Home() {
           </ul>
         </section>
       </main>
-      <footer className="p-6">
+      <footer className="p-6 mx-auto max-w-screen-md">
         <p className="text-xs lg:text-sm text-black">
           2024 Created with NextJS, TailwindCSS and GSAP
         </p>
