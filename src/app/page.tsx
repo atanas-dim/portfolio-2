@@ -6,10 +6,10 @@ export default function Home() {
       <main className="size-full min-h-fit flex flex-col mx-auto max-w-screen-lg p-6 gap-28 glossy">
         <section className="flex flex-col">
           <div className="flex flex-col">
-            <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight">
+            <h1 className="text-3xl lg:text-6xl font-extrabold leading-tight">
               <span className="">Atanas Dimitrov</span>
             </h1>
-            <h2 className="text-4xl lg:text-6xl font-extrabold leading-tight">
+            <h2 className="text-3xl lg:text-6xl font-extrabold leading-tight">
               <span className="">React Developer</span>{" "}
               <span className="emoji">🪄</span>
             </h2>
