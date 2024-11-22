@@ -15,7 +15,7 @@ export default function Home() {
             </h2>
           </div>
           <ul className="flex text-4xl">
-            {["👨‍💻", "📚", "🎨", "🎸"].map((emoji, index) => {
+            {["📧", "🐙", "💼", "💻"].map((emoji, index) => {
               return (
                 <li key={"link-" + index}>
                   <a className="emoji size-12 items-center justify-center flex">
