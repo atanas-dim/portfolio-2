@@ -3,13 +3,13 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <main className="size-full min-h-fit flex flex-col mx-auto max-w-screen-md p-6 gap-28 glossy">
+      <main className="size-full min-h-fit flex flex-col mx-auto max-w-screen-lg p-6 gap-28 glossy">
         <section className="flex flex-col">
           <div className="flex flex-col">
-            <h1 className="text-4xl lg:text-6xl font-black leading-tight">
+            <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight">
               <span className="">Atanas Dimitrov</span>
             </h1>
-            <h2 className="text-4xl lg:text-6xl font-black leading-tight">
+            <h2 className="text-4xl lg:text-6xl font-extrabold leading-tight">
               <span className="">React Developer</span>{" "}
               <span className="emoji">🪄</span>
             </h2>
@@ -27,7 +27,7 @@ export default function Home() {
           </ul>
         </section>
         <section className="flex flex-col gap-4">
-          <h2 className="text-3xl lg:text-5xl font-bold ">About me</h2>
+          <h2 className="text-3xl lg:text-5xl font-extrabold">About me</h2>
           <p className="text-xl lg:text-2xl">
             I am a React developer with a passion for creating beautiful and
             functional web applications. I love to learn new things and share my
@@ -35,8 +35,8 @@ export default function Home() {
           </p>
         </section>
         <section className="flex flex-col gap-4">
-          <h2 className="text-3xl lg:text-5xl font-bold ">Projects</h2>
-          <ul className="gap-4 grid grid-cols-1 lg:grid-cols-3">
+          <h2 className="text-3xl lg:text-5xl font-extrabold">Projects</h2>
+          <ul className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {["Project 1", "Project 2", "Project 3"].map((project, index) => {
               return (
                 <li key={"project-" + index}>
@@ -59,7 +59,7 @@ export default function Home() {
           </ul>
         </section>
       </main>
-      <footer className="p-6 mx-auto max-w-screen-md">
+      <footer className="p-6 mx-auto max-w-screen-lg">
         <p className="text-xs lg:text-sm text-black">
           2024 Created with NextJS, TailwindCSS and GSAP
         </p>
