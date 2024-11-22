@@ -1,25 +1,52 @@
 import Image from "next/image";
 
+const SOCIAL_LINKS: {
+  label: string;
+  href: string;
+}[] = [
+  {
+    label: "📧 Email",
+    href: "mailto:a.dimitrov32@gmail.com",
+  },
+  {
+    label: "🐙 GitHub",
+    href: "https://github.com/atanas-dim",
+  },
+  {
+    label: "💼 LinkedIn",
+    href: "https://www.linkedin.com/in/atanas-dim/",
+  },
+  {
+    label: "💻 CodeSandbox",
+    href: "https://codesandbox.io/u/atanas-dim",
+  },
+];
+
 export default function Home() {
   return (
     <>
-      <main className="size-full min-h-fit flex flex-col mx-auto max-w-screen-lg p-6 gap-28 glossy">
-        <section className="flex flex-col">
+      <main className="size-full min-h-fit flex flex-col mx-auto max-w-screen-lg p-6 gap-28 glossy motion-reduce:animate-none">
+        <section className="flex flex-col gap-2">
           <div className="flex flex-col">
-            <h1 className="text-3xl lg:text-6xl font-extrabold leading-tight">
-              <span className="">Atanas Dimitrov</span>
+            <h1 className="text-3xl lg:text-6xl font-extrabold leading-tight whitespace-nowrap">
+              Atanas Dimitrov
             </h1>
-            <h2 className="text-3xl lg:text-6xl font-extrabold leading-tight">
+            <h2 className="text-3xl lg:text-6xl font-extrabold leading-tight whitespace-nowrap">
               <span className="">React Developer</span>{" "}
-              <span className="emoji">🪄</span>
+              <span className="text-black text-2xl lg:text-5xl">🪄</span>
             </h2>
           </div>
-          <ul className="flex text-4xl">
-            {["📧", "🐙", "💼", "💻"].map((emoji, index) => {
+          <ul className="text-4xl gap-x-4 gap-y-2 grid grid-cols-[repeat(2,auto)] sm:grid-cols-[repeat(4,auto)] size-fit">
+            {SOCIAL_LINKS.map((link, index) => {
               return (
-                <li key={"link-" + index}>
-                  <a className="emoji size-12 items-center justify-center flex">
-                    {emoji}
+                <li key={"link-" + index} className="size-fit flex">
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-black text-lg whitespace-nowrap"
+                  >
+                    {link.label}
                   </a>
                 </li>
               );

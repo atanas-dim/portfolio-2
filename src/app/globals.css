@@ -8,11 +8,7 @@ html {
 }
 
 body {
-  @apply bg-teal-100 size-full text-black/30;
-}
-
-.emoji {
-  @apply grayscale-[0.8] hue-rotate-30 text-black;
+  @apply bg-rose-100 size-full text-black/5 font-semibold;
 }
 
 .glossy {
@@ -34,7 +30,7 @@ body {
   background-position: 0 0;
   background-size: 50vmax 50vmax;
   background-repeat: repeat;
-  animation: animateGlossy 45s infinite cubic-bezier(0.63, 0.16, 0.41, 0.87);
+  animation: animateGlossy 35s infinite cubic-bezier(0.63, 0.16, 0.41, 0.87);
 }
 
 @keyframes animateGlossy {
