@@ -1,26 +1,5 @@
+import { SOCIAL_LINKS } from "@/resources/socialLinks";
 import Image from "next/image";
-
-const SOCIAL_LINKS: {
-  label: string;
-  href: string;
-}[] = [
-  {
-    label: "📧 Email",
-    href: "mailto:a.dimitrov32@gmail.com",
-  },
-  {
-    label: "🐙 GitHub",
-    href: "https://github.com/atanas-dim",
-  },
-  {
-    label: "💼 LinkedIn",
-    href: "https://www.linkedin.com/in/atanas-dim/",
-  },
-  {
-    label: "💻 CodeSandbox",
-    href: "https://codesandbox.io/u/atanas-dim",
-  },
-];
 
 export default function Home() {
   return (
@@ -29,11 +8,12 @@ export default function Home() {
         <section className="flex flex-col gap-2">
           <div className="flex flex-col">
             <h1 className="text-3xl lg:text-6xl font-extrabold leading-tight whitespace-nowrap">
-              Atanas Dimitrov
+              Atanas Dimitrov{" "}
+              <span className="text-black text-2xl lg:text-5xl">🪄</span>
             </h1>
             <h2 className="text-3xl lg:text-6xl font-extrabold leading-tight whitespace-nowrap">
               <span className="">React Developer</span>{" "}
-              <span className="text-black text-2xl lg:text-5xl">🪄</span>
+              <span className="text-black text-2xl lg:text-5xl">⚛️</span>
             </h2>
           </div>
           <ul className="text-4xl gap-x-4 gap-y-2 grid grid-cols-[repeat(2,auto)] sm:grid-cols-[repeat(4,auto)] size-fit">
@@ -44,8 +24,9 @@ export default function Home() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-black text-lg whitespace-nowrap"
+                    className="text-lg whitespace-nowrap"
                   >
+                    <span className="text-black">{link.emoji}</span>{" "}
                     {link.label}
                   </a>
                 </li>
