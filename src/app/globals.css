@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  font-family: "Arial Black", sans-serif;
+  font-family: sans-serif;
   @apply size-full;
 }
 
