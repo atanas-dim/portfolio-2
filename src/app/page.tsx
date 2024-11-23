@@ -10,6 +10,7 @@ export default function Home() {
     gsap.set("main,section,h1,h2,h3,p,a,.card,footer", {
       opacity: 0,
       y: 6,
+      transition: "none",
     });
 
     gsap.to("main,section,h1,h2,h3,p,a,.card,footer", {
@@ -17,6 +18,11 @@ export default function Home() {
       y: 0,
       duration: 0.5,
       stagger: 0.1,
+      onComplete: () => {
+        gsap.set("main,section,h1,h2,h3,p,a,.card,footer", {
+          clearProps: "transition",
+        });
+      },
     });
   }, []);
 
