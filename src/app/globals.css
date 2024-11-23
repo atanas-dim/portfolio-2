@@ -57,3 +57,9 @@ body {
     background-position: 100vw 0;
   }
 }
+
+@media screen and (min-width: 640px) {
+  .glossy {
+    background-size: 100vmax 100vmax;
+  }
+}

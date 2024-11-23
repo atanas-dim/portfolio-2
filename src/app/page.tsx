@@ -79,7 +79,7 @@ export default function Home() {
                         width={300}
                         height={300}
                       />
-                      <span className="absolute inset-0 bg-rose-200 group-hover:bg-rose-300 mix-blend-multiply hover:mix-blend-color transition-all duration-300" />
+                      <span className="absolute inset-0 bg-rose-200 group-hover:bg-rose-300 mix-blend-multiply group-hover:mix-blend-color transition-all duration-300" />
                     </div>
                     <div className="flex flex-col p-2 gap-2">
                       <h3 className="glossy text-2xl font-bold">
