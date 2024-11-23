@@ -1,6 +1,7 @@
 "use client";
 import { PROJECTS } from "@/resources/projects";
 import { SOCIAL_LINKS } from "@/resources/socialLinks";
+import { TOOLS } from "@/resources/tools";
 import gsap from "gsap";
 import Image from "next/image";
 import { useEffect } from "react";
@@ -28,16 +29,20 @@ export default function Home() {
 
   return (
     <>
-      <main className="opacity-0 size-full min-h-fit flex flex-col mx-auto max-w-screen-lg p-6 gap-28  motion-reduce:animate-none">
+      <main className="opacity-0 size-full min-h-fit flex flex-col mx-auto max-w-screen-lg p-6 gap-28 mb-16 motion-reduce:animate-none">
         <section className="flex flex-col gap-2">
           <div className="flex flex-col">
-            <h1 className="glossy text-3xl lg:text-6xl font-extrabold leading-tight whitespace-nowrap">
+            <h1 className="glossy text-3xl lg:text-6xl font-extrabold whitespace-nowrap">
               Atanas Dimitrov{" "}
-              <span className="text-black text-2xl lg:text-5xl">🪄</span>
+              <span className="text-black text-2xl lg:text-5xl lg:leading-tight">
+                🪄
+              </span>
             </h1>
-            <h2 className="glossy text-3xl lg:text-6xl font-extrabold leading-tight whitespace-nowrap">
+            <h2 className="glossy text-3xl lg:text-6xl font-extrabold whitespace-nowrap">
               <span className="">React Developer</span>{" "}
-              <span className="text-black text-2xl lg:text-5xl">⚛️</span>
+              <span className="text-black text-2xl lg:text-5xl lg:leading-tight">
+                ⚛️
+              </span>
             </h2>
           </div>
           <ul className="text-4xl gap-x-4 gap-y-2 grid grid-cols-[repeat(2,auto)] sm:grid-cols-[repeat(4,auto)] size-fit">
@@ -51,7 +56,9 @@ export default function Home() {
                     className="glossy text-lg whitespace-nowrap"
                   >
                     <span className="text-black">{link.emoji}</span>{" "}
-                    {link.label}
+                    <span className="border-b-2 border-b-rose-950/20 hover:border-b-rose-950 transition-colors duration-500">
+                      {link.label}
+                    </span>
                   </a>
                 </li>
               );
@@ -59,17 +66,17 @@ export default function Home() {
           </ul>
         </section>
         <section className="flex flex-col gap-4">
-          <h2 className="glossy text-3xl lg:text-5xl font-extrabold">
+          <h2 className="glossy text-3xl lg:text-5xl lg:leading-tight font-extrabold">
             About me
           </h2>
           <p className="glossy text-xl lg:text-2xl">
-            I am a React developer with a passion for creating beautiful and
-            functional web applications. I love to learn new things and share my
-            knowledge with others.
+            I’m a React developer with a passion for creating beautiful and
+            functional web applications. I’m always excited to experiment with
+            new ideas and technologies.
           </p>
         </section>
         <section className="flex flex-col gap-4">
-          <h2 className="glossy text-3xl lg:text-5xl font-extrabold">
+          <h2 className="glossy text-3xl lg:text-5xl lg:leading-tight font-extrabold">
             Projects
           </h2>
           <ul className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -81,17 +88,19 @@ export default function Home() {
                       <Image
                         src={project.image}
                         alt=""
-                        className="object-cover scale-110 grayscale -z-10"
+                        className="object-cover scale-110 grayscale -z-10 size-full"
                         width={300}
                         height={300}
                       />
                       <span className="absolute inset-0 bg-rose-200 mix-blend-color" />
                     </div>
-                    <div className="flex flex-col p-2 gap-2">
-                      <h3 className="glossy text-2xl font-bold">
+                    <div className="flex flex-col p-2">
+                      <h3 className="glossy text-2xl font-bold mb-1">
                         {project.title}
                       </h3>
-                      <p className="glossy text-base">{project.technologies}</p>
+                      <p className="glossy text-base h-12 mb-3">
+                        {project.technologies}
+                      </p>
                       <div className="flex gap-2">
                         {project.links.map((link, index) => {
                           return (
@@ -109,6 +118,23 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+        <section className="flex flex-col gap-4">
+          <h2 className="glossy text-3xl lg:text-5xl lg:leading-tight font-extrabold">
+            Tools
+          </h2>
+          <p className="glossy text-xl lg:text-2xl">
+            I use the following technologies to create my projects:
+          </p>
+          <ul className="glossy gap-y-2 gap-x-10 grid grid-flow-col grid-rows-12 sm:grid-rows-8 w-fit">
+            {TOOLS.map((tool, index) => {
+              return (
+                <li key={"tool-" + index} className="text-lg">
+                  {tool}
                 </li>
               );
             })}
