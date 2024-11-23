@@ -70,16 +70,16 @@ export default function Home() {
             {PROJECTS.map((project, index) => {
               return (
                 <li key={"project-" + index}>
-                  <div className="card group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 hover:bg-rose-200/50">
-                    <div className="relative aspect-square w-full rounded-2xl overflow-hidden flex justify-center items-center">
+                  <div className="card group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 hover:bg-rose-200/50 transition-all duration-300">
+                    <div className="relative aspect-square w-full rounded-2xl overflow-hidden flex justify-center items-center border-2 border-rose-950">
                       <Image
                         src={project.image}
                         alt=""
-                        className="object-cover scale-110 grayscale group-hover:scale-125 transition-all duration-300 -z-10"
+                        className="object-cover scale-110 grayscale -z-10"
                         width={300}
                         height={300}
                       />
-                      <span className="absolute inset-0 bg-rose-200 group-hover:bg-rose-300 mix-blend-multiply group-hover:mix-blend-color transition-all duration-300" />
+                      <span className="absolute inset-0 bg-rose-200 mix-blend-color" />
                     </div>
                     <div className="flex flex-col p-2 gap-2">
                       <h3 className="glossy text-2xl font-bold">
