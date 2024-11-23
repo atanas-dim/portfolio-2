@@ -1,4 +1,5 @@
 "use client";
+import { PROJECTS } from "@/resources/projects";
 import { SOCIAL_LINKS } from "@/resources/socialLinks";
 import gsap from "gsap";
 import Image from "next/image";
@@ -66,22 +67,40 @@ export default function Home() {
             Projects
           </h2>
           <ul className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {["Project 1", "Project 2", "Project 3"].map((project, index) => {
+            {PROJECTS.map((project, index) => {
               return (
                 <li key={"project-" + index}>
-                  <div className="card flex flex-col rounded-3xl p-2 gap-1 border-2 border-black">
-                    <Image
-                      src="https://via.placeholder.com/300"
-                      alt=""
-                      className="aspect-square w-full rounded-2xl"
-                      width={300}
-                      height={300}
-                    />
-                    <div className="flex flex-col p-2">
-                      <p className="glossy text-2xl font-bold">{project}</p>
-                      <p className="glossy text-base">
-                        Description of {project}
-                      </p>
+                  <div className="card group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 hover:bg-rose-200/50">
+                    <div className="relative aspect-square w-full rounded-2xl overflow-hidden flex justify-center items-center">
+                      <Image
+                        src={project.image}
+                        alt=""
+                        className="object-cover scale-110 grayscale group-hover:scale-125 transition-all duration-300 -z-10"
+                        width={300}
+                        height={300}
+                      />
+                      <span className="absolute inset-0 bg-rose-200 group-hover:bg-rose-300 mix-blend-multiply hover:mix-blend-color transition-all duration-300" />
+                    </div>
+                    <div className="flex flex-col p-2 gap-2">
+                      <h3 className="glossy text-2xl font-bold">
+                        {project.title}
+                      </h3>
+                      <p className="glossy text-base">{project.technologies}</p>
+                      <div className="flex gap-2">
+                        {project.links.map((link, index) => {
+                          return (
+                            <a
+                              key={project.title + "-link-" + index}
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-lg whitespace-nowrap flex justify-center items-center bg-rose-300 hover:bg-red-400 active:bg-rose-500 active:text-rose-50 text-rose-950 rounded-2xl py-2 px-4 transition-all duration-300"
+                            >
+                              {link.label}
+                            </a>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -91,7 +110,7 @@ export default function Home() {
         </section>
       </main>
       <footer className="opacity-0 p-6 mx-auto max-w-screen-lg">
-        <p className="text-xs lg:text-sm text-black">
+        <p className="text-xs lg:text-sm text-rose-950">
           2024 Created with NextJS, TailwindCSS and GSAP
         </p>
       </footer>
