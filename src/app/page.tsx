@@ -143,7 +143,7 @@ export default function Home() {
       </main>
       <footer className="opacity-0 p-6 mx-auto max-w-screen-lg">
         <p className="text-xs lg:text-sm text-rose-950">
-          2024 Created with NextJS, TailwindCSS and GSAP
+          {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
         </p>
       </footer>
     </>
