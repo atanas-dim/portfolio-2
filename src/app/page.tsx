@@ -131,10 +131,10 @@ export default function Home() {
           <p className="glossy text-xl lg:text-2xl">
             I use the following technologies to create my projects:
           </p>
-          <ul className="glossy gap-y-2 gap-x-10 grid grid-flow-col grid-rows-12 sm:grid-rows-8 w-fit">
+          <ul className="glossy gap-y-2 gap-x-6 sm:gap-x-10 grid grid-flow-col grid-rows-12 sm:grid-rows-8 md:grid-rows-6 w-fit">
             {TOOLS.map((tool, index) => {
               return (
-                <li key={"tool-" + index} className="text-lg">
+                <li key={"tool-" + index} className="text-lg whitespace-nowrap">
                   {tool}
                 </li>
               );
