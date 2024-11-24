@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="opacity-0 size-full min-h-fit flex flex-col mx-auto max-w-screen-lg p-6 gap-28 mb-16 motion-reduce:animate-none">
+      <main className="opacity-0 size-full min-h-fit flex flex-col mx-auto max-w-screen-lg px-6 py-12 gap-28 mb-16 motion-reduce:animate-none">
         <section className="flex flex-col gap-2">
           <div className="flex flex-col">
             <h1 className="glossy text-3xl lg:text-6xl font-extrabold whitespace-nowrap">
@@ -39,7 +39,7 @@ export default function Home() {
               </span>
             </h1>
             <h2 className="glossy text-3xl lg:text-6xl font-extrabold whitespace-nowrap">
-              <span className="">React Developer</span>{" "}
+              React Developer{" "}
               <span className="text-black text-2xl lg:text-5xl lg:leading-tight">
                 ⚛️
               </span>
@@ -88,9 +88,10 @@ export default function Home() {
                       <Image
                         src={project.image}
                         alt=""
-                        className="object-cover scale-110 grayscale -z-10 size-full"
+                        className="object-cover grayscale -z-10 size-full"
                         width={300}
                         height={300}
+                        quality={100}
                       />
                       <span className="absolute inset-0 bg-rose-200 mix-blend-color" />
                     </div>
