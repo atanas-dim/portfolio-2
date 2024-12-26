@@ -4,6 +4,7 @@ import earthImg from "@/assets/images/3d-earth.jpg";
 import searchingMapboxImg from "@/assets/images/mapbox-search.jpg";
 import shadersPlaygroundImg from "@/assets/images/shaders-playground.jpg";
 import tiledImageLoaderImg from "@/assets/images/tiled-image-loader.jpg";
+import calendarImg from "@/assets/images/react-grid-calendar.jpg";
 
 export type ProjectDef = {
   videoSrc?: string;
@@ -26,6 +27,21 @@ export const PROJECTS: ProjectDef[] = [
       {
         label: "Live",
         href: "https://earth-model-3d.vercel.app/",
+      },
+    ],
+  },
+  {
+    image: calendarImg,
+    title: "React Grid Calendar",
+    technologies: "NextJS, TypeScript, date-fns, TailwindCSS",
+    links: [
+      {
+        label: "Code",
+        href: "https://github.com/atanas-dim/react-grid-calendar",
+      },
+      {
+        label: "Live",
+        href: "https://react-grid-calendar.vercel.app/",
       },
     ],
   },
