@@ -9,6 +9,12 @@ html {
 
 body {
   @apply bg-rose-100 w-full relative text-rose-950/5 font-bold;
+
+  background-image: radial-gradient(
+    circle at top center,
+    #ffffff99,
+    #fec3ca 60%
+  );
 }
 
 * {
