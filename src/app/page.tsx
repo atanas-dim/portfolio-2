@@ -87,7 +87,7 @@ export default function Home() {
             {PROJECTS.map((project, index) => {
               return (
                 <li key={"project-" + index}>
-                  <div className="card group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 hover:bg-rose-200/50 transition-all duration-300">
+                  <div className="card group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 hover:bg-rose-200/50 hover:rotate-1 transition-all duration-300">
                     <div className="relative aspect-square w-full rounded-2xl overflow-hidden flex justify-center items-center border-2 border-rose-950">
                       <Image
                         src={project.image}

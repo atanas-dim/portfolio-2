@@ -59,8 +59,8 @@ body {
   background-image: url(/noise-light.png);
   background-size: 120px;
 
-  mix-blend-mode: multiply;
-  filter: contrast(0.1) invert(1);
+  mix-blend-mode: plus-lighter;
+  filter: contrast(0.1);
   animation: animateGrainy 0.5s infinite step-start;
 }
 
