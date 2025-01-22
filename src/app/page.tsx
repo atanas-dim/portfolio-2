@@ -21,7 +21,7 @@ export default function Home() {
       stagger: 0.1,
       onComplete: () => {
         gsap.set("main,section,h1,h2,h3,p,a,.card,footer", {
-          clearProps: "transition",
+          clearProps: "transition,transform",
         });
       },
     });
@@ -87,12 +87,12 @@ export default function Home() {
             {PROJECTS.map((project, index) => {
               return (
                 <li key={"project-" + index}>
-                  <div className="card group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 hover:bg-rose-200/50 hover:rotate-1 transition-all duration-300">
+                  <div className="card group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 bg-rose-100 hover:bg-rose-50 hover:rotate-1 transition-all duration-300">
                     <div className="relative aspect-square w-full rounded-2xl overflow-hidden flex justify-center items-center border-2 border-rose-950">
                       <Image
                         src={project.image}
                         alt=""
-                        className="object-cover grayscale -z-10 size-full"
+                        className="object-cover grayscale size-full"
                         width={300}
                         height={300}
                         quality={100}
