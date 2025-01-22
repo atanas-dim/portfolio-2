@@ -4,32 +4,19 @@
 
 html {
   font-family: sans-serif;
-  @apply size-full;
+  @apply w-full;
 }
 
 body {
-  @apply bg-rose-100 size-full text-rose-950/5 font-bold;
+  @apply bg-rose-100 w-full relative text-rose-950/5 font-bold;
 }
 
 * {
+  overscroll-behavior: none;
   @apply text-balance;
 }
 
 .glossy {
-  /* background-image: linear-gradient(
-    45deg,
-    #000000de 25%,
-    #00000075 25%,
-    #000000de 35%,
-    #00000075 35%,
-    #000000de 50%,
-    #000000de 75%,
-    #00000075 75%,
-    #000000de 85%,
-    #00000075 85%,
-    #000000de 100%,
-    #00000075 100%
-  ); */
   background-image: linear-gradient(
     45deg,
     rgb(76, 5, 25) 25%,
@@ -49,7 +36,7 @@ body {
   background-position: 0 0;
   background-size: 50vmax 50vmax;
   background-repeat: repeat;
-  animation: animateGlossy 35s infinite cubic-bezier(0.63, 0.16, 0.41, 0.87);
+  animation: animateGlossy 45s infinite cubic-bezier(0.63, 0.16, 0.41, 0.87);
 }
 
 @keyframes animateGlossy {
@@ -65,5 +52,30 @@ body {
 @media screen and (min-width: 640px) {
   .glossy {
     background-size: 100vmax 100vmax;
+  }
+}
+
+.grainy {
+  background-image: url(/noise-light.png);
+  background-size: 120px;
+
+  mix-blend-mode: multiply;
+  filter: contrast(0.1) invert(1);
+  animation: animateGrainy 0.5s infinite step-start;
+}
+
+@keyframes animateGrainy {
+  0%,
+  100% {
+    background-position: 0px;
+  }
+  25% {
+    background-position: 40px;
+  }
+  50% {
+    background-position: 30px;
+  }
+  75% {
+    background-position: 60px;
   }
 }

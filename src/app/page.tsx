@@ -29,6 +29,10 @@ export default function Home() {
 
   return (
     <>
+      <div
+        role="presentation"
+        className="pointer-events-none grainy absolute inset-0 z-50"
+      />
       <main className="opacity-0 size-full min-h-fit flex flex-col mx-auto max-w-screen-lg p-6 lg:py-12 gap-28 mb-16 motion-reduce:animate-none">
         <section className="flex flex-col gap-2">
           <div className="flex flex-col">
