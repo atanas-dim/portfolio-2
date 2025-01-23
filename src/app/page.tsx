@@ -1,10 +1,10 @@
 "use client";
-import { PROJECTS } from "@/resources/projects";
+import { ProjectDef, PROJECTS } from "@/resources/projects";
 import { SOCIAL_LINKS } from "@/resources/socialLinks";
 import { TOOLS } from "@/resources/tools";
 import gsap from "gsap";
 import Image from "next/image";
-import { useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 export default function Home() {
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Home() {
         role="presentation"
         className="pointer-events-none grainy absolute inset-0 z-50"
       />
-      <main className="opacity-0 size-full min-h-fit flex flex-col mx-auto max-w-screen-lg p-6 lg:py-12 gap-28 mb-16 motion-reduce:animate-none">
+      <main className="opacity-0 size-full min-h-fit flex flex-col mx-auto max-w-screen-lg px-6 py-8 lg:py-16 gap-28 mb-16 motion-reduce:animate-none">
         <section className="flex flex-col gap-2">
           <div className="flex flex-col">
             <h1 className="glossy text-3xl lg:text-6xl font-extrabold whitespace-nowrap">
@@ -86,43 +86,14 @@ export default function Home() {
           <ul className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {PROJECTS.map((project, index) => {
               return (
-                <li key={"project-" + index}>
-                  <div className="card group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 bg-rose-100 hover:bg-rose-50 hover:rotate-1 transition-all duration-300">
-                    <div className="relative aspect-square w-full rounded-2xl overflow-hidden flex justify-center items-center border-2 border-rose-950">
-                      <Image
-                        src={project.image}
-                        alt=""
-                        className="object-cover grayscale size-full"
-                        width={300}
-                        height={300}
-                        quality={100}
-                      />
-                      <span className="absolute inset-0 bg-rose-200 mix-blend-color" />
-                    </div>
-                    <div className="flex flex-col p-2">
-                      <h3 className="glossy text-2xl font-bold mb-1">
-                        {project.title}
-                      </h3>
-                      <p className="glossy text-base h-12 mb-3">
-                        {project.technologies}
-                      </p>
-                      <div className="flex gap-2">
-                        {project.links.map((link, index) => {
-                          return (
-                            <a
-                              key={project.title + "-link-" + index}
-                              href={link.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-lg whitespace-nowrap flex justify-center items-center bg-rose-300 hover:bg-red-400 active:bg-rose-500 active:text-rose-50 text-rose-950 rounded-2xl py-2 px-4 transition-all duration-300"
-                            >
-                              {link.label}
-                            </a>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
+                <li
+                  key={"project-" + index}
+                  style={{
+                    perspective: 1200,
+                  }}
+                  className="card hover:z-10"
+                >
+                  <Card project={project} />
                 </li>
               );
             })}
@@ -154,3 +125,62 @@ export default function Home() {
     </>
   );
 }
+
+type CardProps = {
+  project: ProjectDef;
+};
+
+const Card: FC<CardProps> = ({ project }) => {
+  const [rotate, setRotate] = useState({ x: 0, y: 0, z: 0 });
+
+  useEffect(() => {
+    setRotate({
+      x: Math.floor(Math.random() * 8) + 3,
+      y: Math.floor(Math.random() * 7) - 3,
+      z: Math.floor(Math.random() * 5) - 2,
+    });
+  }, []);
+
+  return (
+    <div
+      className="group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 bg-rose-100 hover:bg-rose-50 hover:rotate-card-3d hover:shadow-2xl hover:shadow-rose-950 transition-all duration-300"
+      style={{
+        // @ts-expect-error - TailwindCSS JIT
+        "--rotate-x": `${rotate.x}deg`,
+        "--rotate-y": `${rotate.y}deg`,
+        "--rotate-z": `${rotate.z}deg`,
+      }}
+    >
+      <div className="relative aspect-square w-full rounded-2xl overflow-hidden flex justify-center items-center border-2 border-rose-950">
+        <Image
+          src={project.image}
+          alt=""
+          className="object-cover grayscale size-full"
+          width={300}
+          height={300}
+          quality={100}
+        />
+        <span className="absolute inset-0 bg-rose-200 mix-blend-color" />
+      </div>
+      <div className="flex flex-col p-2">
+        <h3 className="glossy text-2xl font-bold mb-1">{project.title}</h3>
+        <p className="glossy text-base h-12 mb-3">{project.technologies}</p>
+        <div className="flex gap-2">
+          {project.links.map((link, index) => {
+            return (
+              <a
+                key={project.title + "-link-" + index}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg whitespace-nowrap flex justify-center items-center bg-rose-300 hover:bg-red-400 active:bg-rose-500 active:text-rose-50 text-rose-950 rounded-2xl py-2 px-4 transition-all duration-300"
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};

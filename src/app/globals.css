@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .rotate-card-3d {
+    --rotate-x: 8deg;
+    --rotate-y: 2deg;
+    --rotate-z: -1deg;
+    transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y))
+      rotateZ(var(--rotate-z)) translateZ(30px);
+  }
+}
+
 html {
   font-family: sans-serif;
   @apply w-full;
@@ -63,11 +73,11 @@ body {
 
 .grainy {
   background-image: url(/noise-light.png);
-  background-size: 120px;
-
+  background-size: 160px;
   mix-blend-mode: plus-lighter;
   filter: contrast(0.1);
-  animation: animateGrainy 0.5s infinite step-start;
+  opacity: 0.8;
+  animation: animateGrainy 0.6s infinite step-start;
 }
 
 @keyframes animateGrainy {
