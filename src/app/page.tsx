@@ -145,7 +145,7 @@ const Card: FC<CardProps> = ({ project }) => {
     <div
       className="group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 bg-rose-100 hover:bg-rose-50 hover:rotate-card-3d hover:shadow-2xl hover:shadow-rose-950 transition-all duration-300"
       style={{
-        // @ts-expect-error - TailwindCSS JIT
+        // @ts-expect-error - css vars
         "--rotate-x": `${rotate.x}deg`,
         "--rotate-y": `${rotate.y}deg`,
         "--rotate-z": `${rotate.z}deg`,
