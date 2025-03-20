@@ -133,22 +133,21 @@ type CardProps = {
 const Card: FC<CardProps> = ({ project }) => {
   const [rotate, setRotate] = useState({ x: 0, y: 0, z: 0 });
 
-  useEffect(() => {
-    setRotate({
-      x: Math.floor(Math.random() * 8) + 3,
-      y: Math.floor(Math.random() * 7) - 3,
-      z: Math.floor(Math.random() * 5) - 2,
-    });
-  }, []);
-
   return (
     <div
-      className="group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 bg-rose-100 hover:bg-rose-50 hover:rotate-card-3d hover:shadow-2xl hover:shadow-rose-950 transition-all duration-300"
+      className="group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 bg-rose-100 hover:bg-rose-50 hover:rotate-card-3d hover:shadow-2xl hover:shadow-rose-950 transition-all duration-700"
       style={{
         // @ts-expect-error - css vars
         "--rotate-x": `${rotate.x}deg`,
         "--rotate-y": `${rotate.y}deg`,
         "--rotate-z": `${rotate.z}deg`,
+      }}
+      onPointerEnter={() => {
+        setRotate({
+          x: Math.floor(Math.random() * 8) + 3,
+          y: Math.floor(Math.random() * 7) - 3,
+          z: Math.floor(Math.random() * 5) - 2,
+        });
       }}
     >
       <div className="relative aspect-square w-full rounded-2xl overflow-hidden flex justify-center items-center border-2 border-rose-950">
@@ -173,7 +172,7 @@ const Card: FC<CardProps> = ({ project }) => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg whitespace-nowrap flex justify-center items-center bg-rose-300 hover:bg-red-400 active:bg-rose-500 active:text-rose-50 text-rose-950 rounded-2xl py-2 px-4 transition-all duration-300"
+                className="text-lg whitespace-nowrap flex justify-center items-center bg-rose-950 hover:bg-rose-800 active:bg-rose-700 active:text-rose-50 text-rose-50 rounded-2xl py-2 px-4 transition-all duration-300"
               >
                 {link.label}
               </a>

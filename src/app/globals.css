@@ -8,7 +8,7 @@
     --rotate-y: 2deg;
     --rotate-z: -1deg;
     transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y))
-      rotateZ(var(--rotate-z)) translateZ(30px);
+      rotateZ(var(--rotate-z)) translateZ(40px);
   }
 }
 
