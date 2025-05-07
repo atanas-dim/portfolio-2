@@ -79,7 +79,7 @@ export default function Home() {
             new ideas and technologies.
           </p>
         </section>
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-8">
           <h2 className="glossy text-3xl lg:text-5xl lg:leading-tight font-extrabold">
             Projects
           </h2>
@@ -135,7 +135,7 @@ const Card: FC<CardProps> = ({ project }) => {
 
   return (
     <div
-      className="group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 bg-rose-100 hover:bg-rose-50 hover:rotate-card-3d hover:shadow-2xl hover:shadow-rose-950 transition-all duration-700"
+      className="group flex flex-col rounded-3xl p-2 gap-1 border-2 border-rose-950 bg-rose-100 hover:bg-rose-50 hover:rotate-card-3d hover:shadow-2xl hover:shadow-rose-950 transition-all duration-500 ease-linear"
       style={{
         // @ts-expect-error - css vars
         "--rotate-x": `${rotate.x}deg`,
