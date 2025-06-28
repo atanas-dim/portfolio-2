@@ -5,6 +5,7 @@ import searchingMapboxImg from "@/assets/images/mapbox-search.jpg";
 import shadersPlaygroundImg from "@/assets/images/shaders-playground.jpg";
 import tiledImageLoaderImg from "@/assets/images/tiled-image-loader.jpg";
 import calendarImg from "@/assets/images/react-grid-calendar.jpg";
+import nextLocalizationImg from "@/assets/images/next-localization.jpg";
 
 export type ProjectDef = {
   videoSrc?: string;
@@ -15,6 +16,21 @@ export type ProjectDef = {
 };
 
 export const PROJECTS: ProjectDef[] = [
+  {
+    image: nextLocalizationImg,
+    title: "Next Localization",
+    technologies: "TypeScript, NextJS, html-react-parser",
+    links: [
+      {
+        label: "Code",
+        href: "https://github.com/atanas-dim/next-localization",
+      },
+      {
+        label: "Live",
+        href: "https://next-localization-phi.vercel.app",
+      },
+    ],
+  },
   {
     image: earthImg,
     title: "3D Earth",
@@ -33,7 +49,7 @@ export const PROJECTS: ProjectDef[] = [
   {
     image: calendarImg,
     title: "React Grid Calendar",
-    technologies: "NextJS, TypeScript, date-fns, TailwindCSS",
+    technologies: "TypeScript, NextJS, date-fns, TailwindCSS",
     links: [
       {
         label: "Code",
