@@ -7,11 +7,12 @@ import { twJoin } from 'tailwind-merge'
 const montserrat = Montserrat({
   variable: '--font-montserrat',
   subsets: ['latin'],
+  display: 'swap',
 })
 
 const souvenirBold = localFont({
   variable: '--font-souvenir',
-  src: '../assets/fonts/SouvenirB.ttf',
+  src: '../../public/fonts/SouvenirB.ttf',
   display: 'swap',
 })
 
