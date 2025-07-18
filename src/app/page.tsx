@@ -52,7 +52,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="social-link glossy text-lg whitespace-nowrap lg:text-2xl">
                     <span className="text-black">{link.emoji}</span>{' '}
-                    <span className="border-b-2 border-b-rose-950/20 transition-colors duration-500 hover:border-b-rose-950">
+                    <span className="border-b-3 border-b-rose-950/20 transition-colors duration-500 hover:border-b-rose-950">
                       {link.label}
                     </span>
                   </a>
@@ -101,7 +101,7 @@ export default function Home() {
       </main>
       <footer className="w-full opacity-0">
         <div className="mx-auto max-w-5xl px-6">
-          <p className="border-t border-t-red-950/20 py-6 text-xs text-rose-950 lg:text-sm">
+          <p className="border-t-3 border-t-red-950/10 py-6 text-xs text-rose-950 lg:text-sm">
             {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
           </p>
         </div>
