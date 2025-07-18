@@ -1,35 +1,59 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer utilities {
-  .rotate-card-3d {
-    --rotate-x: 8deg;
-    --rotate-y: 2deg;
-    --rotate-z: -1deg;
-    transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y))
-      rotateZ(var(--rotate-z)) translateZ(40px);
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-montserrat: var(--font-montserrat);
+  --font-souvenir: var(--font-souvenir);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 }
 
+@utility rotate-card-3d {
+  --rotate-x: 8deg;
+  --rotate-y: 2deg;
+  --rotate-z: -1deg;
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) translateZ(40px);
+}
+
 html {
-  font-family: sans-serif;
   @apply w-full;
 }
 
 body {
-  @apply bg-rose-100 w-full relative text-rose-950/5 font-bold;
-
-  background-image: radial-gradient(
-    circle at top center,
-    #ffffff99,
-    #fec3ca 60%
-  );
+  @apply font-montserrat relative w-full bg-rose-100 font-medium text-rose-950/5;
+  background-image: radial-gradient(circle at top center, #ffffff99, #fec3ca 60%);
 }
 
 * {
   overscroll-behavior: none;
   @apply text-balance;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-souvenir;
 }
 
 .glossy {

@@ -1,13 +1,13 @@
-import { ImageResponse } from "next/og";
+import { ImageResponse } from 'next/og'
 // Route segment config
-export const runtime = "edge";
+export const runtime = 'edge'
 
 // Image metadata
-export const alt = "Web development portfolio";
+export const alt = 'Web development portfolio'
 export const size = {
   width: 1200,
   height: 630,
-};
+}
 
 const backgroundStyles = {
   backgroundImage: `linear-gradient(
@@ -24,72 +24,60 @@ const backgroundStyles = {
     rgb(76, 5, 25) 100%,
     rgba(76, 5, 25, 0.4) 100%
   )`,
-  backgroundClip: "text",
-  backgroundPosition: "0 0",
-  backgroundSize: "500px 500px",
-  backgroundRepeat: "repeat",
-};
+  backgroundClip: 'text',
+  backgroundPosition: '0 0',
+  backgroundSize: '500px 500px',
+  backgroundRepeat: 'repeat',
+}
 
-export const contentType = "image/png";
+export const contentType = 'image/png'
 
 // Image generation
 export default async function Image() {
-  // Fetch Montserrat font
-  const montserratBold = fetch(
-    "https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
-  )
+  const souvenirBold = fetch('https://adimitrov.vercel.app/fonts/SouvenirB.ttf')
     .then((res) => res.text())
     .then((cssText) => {
       // Extract the actual font file URL from the CSS response
-      const fontUrlMatch = cssText.match(/url\((https:\/\/[^)]+)\)/);
-      if (!fontUrlMatch) throw new Error("Font URL not found");
-      return fetch(fontUrlMatch[1]).then((fontRes) => fontRes.arrayBuffer());
-    });
+      const fontUrlMatch = cssText.match(/url\((https:\/\/[^)]+)\)/)
+      if (!fontUrlMatch) throw new Error('Font URL not found')
+      return fetch(fontUrlMatch[1]).then((fontRes) => fontRes.arrayBuffer())
+    })
 
-  const montserratFontData = await montserratBold;
+  const souvenirBoldFontData = await souvenirBold
 
   return new ImageResponse(
     (
       // ImageResponse JSX element
       <div
         style={{
-          background: "rgb(255, 228, 230)",
-          color: "rgba(76, 5, 25, 0.1)",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          background: 'rgb(255, 228, 230)',
+          color: 'rgba(76, 5, 25, 0.1)',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
           gap: 8,
           paddingLeft: 64,
-        }}
-      >
-        <span style={{ fontSize: 80, fontWeight: 700, ...backgroundStyles }}>
-          Atanas Dimitrov 🪄
-        </span>
+        }}>
+        <span style={{ fontSize: 80, fontWeight: 700, ...backgroundStyles }}>Atanas Dimitrov 🪄</span>
         <span
           style={{
             fontSize: 80,
             fontWeight: 700,
-            display: "block",
+            display: 'block',
             marginBottom: 16,
             ...backgroundStyles,
-          }}
-        >
+          }}>
           Portfolio 🚀
         </span>
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
             gap: 40,
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="-11.5 -10.23174 23 20.46348"
-            width={112}
-          >
+          }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348" width={112}>
             <circle cx="0" cy="0" r="2.05" fill="rgba(76, 5, 25)" />
             <g stroke="rgba(76, 5, 25)" stroke-width="1" fill="none">
               <ellipse rx="11" ry="4.2" />
@@ -98,12 +86,7 @@ export default async function Image() {
             </g>
           </svg>
 
-          <svg
-            fill="none"
-            viewBox="0 0 512 512"
-            width={112}
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg fill="none" viewBox="0 0 512 512" width={112} xmlns="http://www.w3.org/2000/svg">
             <rect fill="rgba(76, 5, 25)" height="512" rx="50" width="512" />
             <rect fill="rgba(76, 5, 25)" height="512" rx="50" width="512" />
             <path
@@ -123,12 +106,12 @@ export default async function Image() {
       ...size,
       fonts: [
         {
-          name: "Montserrat",
-          data: montserratFontData,
-          style: "normal",
+          name: 'Souvenir Bold',
+          data: souvenirBoldFontData,
+          style: 'normal',
           weight: 700,
         },
       ],
-    }
-  );
+    },
+  )
 }
