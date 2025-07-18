@@ -6,21 +6,23 @@ import gsap from 'gsap'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 
+const ELEMENTS = 'main,section,h1,h2,h3,p,.social-link,.card,.tool,footer'
+
 export default function Home() {
   useEffect(() => {
-    gsap.set('main,section,h1,h2,h3,p,a,.card,footer', {
+    gsap.set(ELEMENTS, {
       opacity: 0,
       y: 6,
       transition: 'none',
     })
 
-    gsap.to('main,section,h1,h2,h3,p,a,.card,footer', {
+    gsap.to(ELEMENTS, {
       opacity: 1,
       y: 0,
       duration: 0.5,
       stagger: 0.1,
       onComplete: () => {
-        gsap.set('main,section,h1,h2,h3,p,a,.card,footer', {
+        gsap.set(ELEMENTS, {
           clearProps: 'transition,transform',
         })
       },
@@ -48,7 +50,7 @@ export default function Home() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="glossy whitespace-nowrap text-lg">
+                    className="social-link glossy whitespace-nowrap text-lg">
                     <span className="text-black">{link.emoji}</span>{' '}
                     <span className="border-b-2 border-b-rose-950/20 transition-colors duration-500 hover:border-b-rose-950">
                       {link.label}
@@ -86,10 +88,10 @@ export default function Home() {
         <section className="flex flex-col gap-4">
           <h2 className="glossy text-3xl font-extrabold lg:text-5xl lg:leading-tight">Tools</h2>
           <p className="glossy text-xl lg:text-2xl">I use the following technologies to create my projects:</p>
-          <ul className="glossy grid w-fit grid-flow-col grid-rows-12 gap-x-6 gap-y-2 sm:grid-rows-8 sm:gap-x-10 md:grid-rows-6">
+          <ul className="grid w-fit grid-flow-col grid-rows-12 gap-x-6 gap-y-2 sm:grid-rows-8 sm:gap-x-10 md:grid-rows-6">
             {TOOLS.map((tool, index) => {
               return (
-                <li key={'tool-' + index} className="whitespace-nowrap text-lg">
+                <li key={'tool-' + index} className="tool glossy whitespace-nowrap text-lg">
                   {tool}
                 </li>
               )
@@ -147,8 +149,8 @@ const Card: FC<CardProps> = ({ project }) => {
           <span className="absolute inset-0 bg-rose-200 mix-blend-color" />
         </div>
         <div className="flex flex-col p-2">
-          <h3 className="glossy mb-1 text-2xl font-bold">{project.title}</h3>
-          <p className="glossy mb-3 h-12 text-base">{project.technologies}</p>
+          <span className="glossy mb-1 text-2xl font-extrabold">{project.title}</span>
+          <span className="glossy mb-3 h-12 text-base">{project.technologies}</span>
           <div className="flex gap-2">
             {project.links.map((link, index) => {
               return (
