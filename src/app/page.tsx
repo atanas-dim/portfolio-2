@@ -33,7 +33,7 @@ export default function Home() {
     <>
       <div role="presentation" className="grainy pointer-events-none absolute inset-0 z-50" />
       <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 opacity-0 motion-reduce:animate-none lg:py-16">
-        <section className="flex flex-col gap-2">
+        <section className="flex flex-col gap-4">
           <div className="flex flex-col">
             <h1 className="glossy text-3xl font-extrabold whitespace-nowrap lg:text-6xl">
               Atanas Dimitrov <span className="text-2xl text-black lg:text-5xl lg:leading-tight">🪄</span>
@@ -42,7 +42,7 @@ export default function Home() {
               React Developer <span className="text-2xl text-black lg:text-5xl lg:leading-tight">⚛️</span>
             </h2>
           </div>
-          <ul className="grid size-fit grid-cols-[repeat(2,auto)] gap-x-4 gap-y-2 text-4xl sm:grid-cols-[repeat(4,auto)]">
+          <ul className="flex size-fit gap-x-4 gap-y-2 text-4xl">
             {SOCIAL_LINKS.map((link, index) => {
               return (
                 <li key={'link-' + index} className="flex size-fit">
@@ -50,7 +50,7 @@ export default function Home() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-link glossy text-lg whitespace-nowrap">
+                    className="social-link glossy text-lg whitespace-nowrap lg:text-2xl">
                     <span className="text-black">{link.emoji}</span>{' '}
                     <span className="border-b-2 border-b-rose-950/20 transition-colors duration-500 hover:border-b-rose-950">
                       {link.label}
@@ -91,7 +91,7 @@ export default function Home() {
           <ul className="grid w-fit grid-flow-col grid-rows-12 gap-x-6 gap-y-2 sm:grid-rows-8 sm:gap-x-10 md:grid-rows-6">
             {TOOLS.map((tool, index) => {
               return (
-                <li key={'tool-' + index} className="tool glossy text-lg whitespace-nowrap">
+                <li key={'tool-' + index} className="tool glossy text-xl whitespace-nowrap lg:text-2xl">
                   {tool}
                 </li>
               )
@@ -99,10 +99,12 @@ export default function Home() {
           </ul>
         </section>
       </main>
-      <footer className="font-souvenir mx-auto bg-rose-100/50 opacity-0">
-        <p className="mx-auto max-w-5xl p-6 text-xs text-rose-950 lg:text-sm">
-          {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
-        </p>
+      <footer className="w-full opacity-0">
+        <div className="mx-auto max-w-5xl px-6">
+          <p className="border-t border-t-red-950/20 py-6 text-xs text-rose-950 lg:text-sm">
+            {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
+          </p>
+        </div>
       </footer>
     </>
   )
