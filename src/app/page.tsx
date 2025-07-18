@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <>
       <div role="presentation" className="grainy pointer-events-none absolute inset-0 z-50" />
-      <main className="mx-auto mb-16 flex size-full min-h-fit max-w-screen-lg flex-col gap-28 px-6 py-8 opacity-0 motion-reduce:animate-none lg:py-16">
+      <main className="mx-auto mb-16 flex size-full min-h-fit max-w-(--breakpoint-lg) flex-col gap-28 px-6 py-8 opacity-0 motion-reduce:animate-none lg:py-16">
         <section className="flex flex-col gap-2">
           <div className="flex flex-col">
             <h1 className="glossy whitespace-nowrap text-3xl font-extrabold lg:text-6xl">
@@ -99,7 +99,7 @@ export default function Home() {
           </ul>
         </section>
       </main>
-      <footer className="mx-auto max-w-screen-lg p-6 opacity-0">
+      <footer className="mx-auto max-w-(--breakpoint-lg) p-6 opacity-0">
         <p className="text-xs text-rose-950 lg:text-sm">
           {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
         </p>
