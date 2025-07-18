@@ -34,16 +34,9 @@ export const contentType = 'image/png'
 
 // Image generation
 export default async function Image() {
-  const souvenirBold = fetch('https://adimitrov.vercel.app/fonts/SouvenirB.ttf')
-    .then((res) => res.text())
-    .then((cssText) => {
-      // Extract the actual font file URL from the CSS response
-      const fontUrlMatch = cssText.match(/url\((https:\/\/[^)]+)\)/)
-      if (!fontUrlMatch) throw new Error('Font URL not found')
-      return fetch(fontUrlMatch[1]).then((fontRes) => fontRes.arrayBuffer())
-    })
-
-  const souvenirBoldFontData = await souvenirBold
+  const res = await fetch('https://adimitrov.vercel.app/fonts/SouvenirB.ttf')
+  if (!res.ok) throw new Error('Failed to load Souvenir font')
+  const souvenirBoldFontData = await res.arrayBuffer()
 
   return new ImageResponse(
     (
