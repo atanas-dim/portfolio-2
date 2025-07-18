@@ -38,7 +38,7 @@ html {
 }
 
 body {
-  @apply font-montserrat relative w-full bg-rose-100 font-medium text-rose-950/5;
+  @apply font-montserrat relative w-full bg-rose-100 font-semibold text-rose-950/5;
   background-image: radial-gradient(circle at top center, #ffffff99, #fec3ca 60%);
 }
 
