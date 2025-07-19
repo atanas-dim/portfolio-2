@@ -136,7 +136,7 @@ const Card: FC<CardProps> = ({ project }) => {
       }}>
       <div
         role="presentation"
-        className="mask-card-shadow pointer-events-none absolute inset-0 top-1/10 scale-60 rounded-3xl bg-rose-950 opacity-100 transition-all duration-500 ease-linear group-hover:scale-120 group-hover:opacity-100 group-active:scale-120 group-active:opacity-100"
+        className="mask-card-shadow pointer-events-none absolute inset-0 top-14 scale-60 rounded-3xl bg-rose-950/40 opacity-100 blur-xl transition-all duration-500 ease-linear group-hover:scale-110 group-hover:opacity-100 group-active:scale-110 group-active:opacity-100"
       />
       <div
         className="@container relative flex size-full flex-col gap-1 rounded-3xl border-2 border-rose-950 bg-rose-100 p-2 group-hover:bg-rose-50"
