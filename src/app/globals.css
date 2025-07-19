@@ -1,6 +1,13 @@
 @import 'tailwindcss';
 
 @theme {
+  --breakpoint-2xs: 28rem;
+  --breakpoint-xs: 32rem;
+
+  --container-6xs: 10rem;
+  --container-5xs: 12rem;
+  --container-4xs: 14rem;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -33,7 +40,7 @@ body {
 }
 
 .font-souvenir {
-  letter-spacing: 0.2px;
+  letter-spacing: 0.0125em;
 }
 
 .rotate-card-3d:hover {
@@ -44,19 +51,16 @@ body {
 }
 
 .glossy {
+  will-change: background-position;
+
   background-image: linear-gradient(
     45deg,
     rgb(76, 5, 25) 25%,
     rgba(76, 5, 25, 0.4) 25%,
-    rgb(76, 5, 25) 35%,
-    rgba(76, 5, 25, 0.4) 35%,
-    rgb(76, 5, 25) 50%,
+    rgb(76, 5, 25) 45%,
     rgb(76, 5, 25) 75%,
     rgba(76, 5, 25, 0.4) 75%,
-    rgb(76, 5, 25) 85%,
-    rgba(76, 5, 25, 0.4) 85%,
-    rgb(76, 5, 25) 100%,
-    rgba(76, 5, 25, 0.4) 100%
+    rgb(76, 5, 25) 95%
   );
 
   background-clip: text;
@@ -66,6 +70,27 @@ body {
   animation: animateGlossy 45s infinite cubic-bezier(0.63, 0.16, 0.41, 0.87);
 }
 
+@media screen and (min-width: 640px) {
+  .glossy {
+    background-size: 100vmax 100vmax;
+
+    background-image: linear-gradient(
+      45deg,
+      rgb(76, 5, 25) 25%,
+      rgba(76, 5, 25, 0.4) 25%,
+      rgb(76, 5, 25) 35%,
+      rgba(76, 5, 25, 0.4) 35%,
+      rgb(76, 5, 25) 50%,
+      rgb(76, 5, 25) 75%,
+      rgba(76, 5, 25, 0.4) 75%,
+      rgb(76, 5, 25) 85%,
+      rgba(76, 5, 25, 0.4) 85%,
+      rgb(76, 5, 25) 100%,
+      rgba(76, 5, 25, 0.4) 100%
+    );
+  }
+}
+
 @keyframes animateGlossy {
   0%,
   100% {
@@ -73,12 +98,6 @@ body {
   }
   50% {
     background-position: 100vw 0;
-  }
-}
-
-@media screen and (min-width: 640px) {
-  .glossy {
-    background-size: 100vmax 100vmax;
   }
 }
 
@@ -104,5 +123,12 @@ body {
   }
   75% {
     background-position: 60px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glossy,
+  .grainy {
+    animation: none !important;
   }
 }

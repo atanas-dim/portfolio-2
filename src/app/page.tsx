@@ -52,7 +52,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="social-link glossy text-lg whitespace-nowrap lg:text-2xl">
                     <span className="text-black">{link.emoji}</span>{' '}
-                    <span className="border-b-2 border-b-rose-950/20 transition-colors duration-500 hover:border-b-rose-950">
+                    <span className="border-b-3 border-b-rose-950/20 transition-colors duration-500 hover:border-b-rose-950">
                       {link.label}
                     </span>
                   </a>
@@ -70,7 +70,7 @@ export default function Home() {
         </section>
         <section className="flex flex-col gap-8">
           <h2 className="glossy font-souvenir text-3xl font-extrabold lg:text-5xl lg:leading-tight">Projects</h2>
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="2xs:grid-cols-2 grid grid-cols-1 gap-4 md:grid-cols-3">
             {PROJECTS.map((project, index) => {
               return (
                 <li
@@ -87,8 +87,8 @@ export default function Home() {
         </section>
         <section className="flex flex-col gap-4">
           <h2 className="glossy font-souvenir text-3xl font-extrabold lg:text-5xl lg:leading-tight">Tools</h2>
-          <p className="glossy text-xl lg:text-2xl">I use the following technologies to create my projects:</p>
-          <ul className="grid w-fit grid-flow-col grid-rows-12 gap-x-6 gap-y-2 sm:grid-rows-8 sm:gap-x-10 md:grid-rows-6">
+          <p className="glossy mb-6 text-xl lg:text-2xl">I use the following technologies to create my projects:</p>
+          <ul className="xs:grid-rows-8 grid w-fit grid-flow-col grid-rows-12 gap-x-6 gap-y-2 sm:gap-x-10 md:grid-rows-6">
             {TOOLS.map((tool, index) => {
               return (
                 <li key={'tool-' + index} className="tool glossy text-xl whitespace-nowrap lg:text-2xl">
@@ -101,7 +101,7 @@ export default function Home() {
       </main>
       <footer className="w-full">
         <div className="mx-auto max-w-5xl px-6">
-          <p className="border-t-2 border-t-red-950/10 py-6 text-xs text-rose-950 lg:text-sm">
+          <p className="border-t-3 border-t-red-950/10 py-6 text-xs text-rose-950 lg:text-sm">
             {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
           </p>
         </div>
@@ -139,9 +139,9 @@ const Card: FC<CardProps> = ({ project }) => {
         className="absolute inset-0 top-10 scale-60 rounded-3xl bg-rose-950/50 opacity-0 blur-xl transition-all duration-300 ease-linear group-hover:scale-100 group-hover:opacity-100"
       />
       <div
-        className="relative flex flex-col gap-1 rounded-3xl border-2 border-rose-950 bg-rose-100 p-2 group-hover:bg-rose-50"
+        className="@container relative flex size-full flex-col gap-1 rounded-3xl border-2 border-rose-950 bg-rose-100 p-2 group-hover:bg-rose-50"
         onPointerEnter={handlePointerEnter}>
-        <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl border-2 border-rose-950">
+        <div className="relative flex aspect-square w-full shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-rose-950">
           <Image
             src={project.image}
             alt=""
@@ -152,10 +152,10 @@ const Card: FC<CardProps> = ({ project }) => {
           />
           <span className="absolute inset-0 bg-rose-200 mix-blend-color" />
         </div>
-        <div className="flex flex-col p-2">
-          <span className="glossy font-souvenir mb-1 text-2xl font-extrabold">{project.title}</span>
-          <span className="glossy mb-3 h-12 text-base">{project.technologies}</span>
-          <div className="flex gap-2">
+        <div className="flex h-full flex-col p-2">
+          <span className="glossy font-souvenir mb-1 text-xl font-extrabold @2xs:text-2xl">{project.title}</span>
+          <span className="glossy mb-3 h-12 text-sm @2xs:text-base">{project.technologies}</span>
+          <div className="mt-auto flex gap-2">
             {project.links.map((link, index) => {
               return (
                 <a
