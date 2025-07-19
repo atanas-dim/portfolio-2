@@ -101,7 +101,7 @@ export default function Home() {
       </main>
       <footer className="w-full">
         <div className="mx-auto max-w-5xl px-6">
-          <p className="border-t-3 border-t-red-950/10 py-6 text-xs lg:text-sm">
+          <p className="border-t-3 border-t-red-950/10 py-6 text-xs font-bold lg:text-sm">
             {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
           </p>
         </div>
