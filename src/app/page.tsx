@@ -31,8 +31,9 @@ export default function Home() {
         start: 'top bottom',
         end: 'bottom top',
         scrub: 2,
+        fastScrollEnd: true,
       },
-      backgroundPositionX: (i) => `${150 + (i + 1) * 10}vmax`,
+      backgroundPositionX: (i) => `${30 + (i + 1) * 10}vmax`,
     })
   }, [])
 
@@ -45,9 +46,9 @@ export default function Home() {
       <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 motion-reduce:animate-none lg:py-16">
         <section className="flex flex-col gap-2">
           <h1 className="whitespace-nowrap">Atanas Dimitrov</h1>
-          <span className="text-lg whitespace-nowrap lg:text-2xl">
+          <p className="text-2xl whitespace-nowrap lg:text-3xl">
             React Developer <span className="text-black">🪄 ⚛️</span>
-          </span>
+          </p>
         </section>
         <section className="flex flex-col gap-2">
           <h2 className="whitespace-nowrap">Let&apos;s connect</h2>

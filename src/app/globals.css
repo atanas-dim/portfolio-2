@@ -24,15 +24,34 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
-}
 
-html {
-  @apply w-full;
-}
+  html {
+    @apply w-full;
+  }
 
-body {
-  @apply font-montserrat relative w-full overflow-x-hidden overflow-y-auto bg-rose-100 font-semibold text-rose-950;
-  background-image: radial-gradient(circle at top center, #ffffff99, #fec3ca 60%);
+  body {
+    @apply font-montserrat relative w-full overflow-x-hidden overflow-y-auto bg-rose-100 font-semibold text-rose-950;
+    background-image: radial-gradient(circle at top center, #ffffff99, #fec3ca 60%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply glossy font-souvenir font-extrabold;
+  }
+
+  h1,
+  h2 {
+    @apply 3xs:text-4xl text-3xl lg:text-5xl;
+  }
+
+  p,
+  li {
+    @apply text-xl lg:text-2xl;
+  }
 }
 
 * {
@@ -87,25 +106,6 @@ body {
   50% {
     background-position: 0 0;
   }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply glossy font-souvenir font-extrabold;
-}
-
-h1,
-h2 {
-  @apply 3xs:text-4xl text-3xl lg:text-5xl;
-}
-
-p,
-li {
-  @apply text-xl lg:text-2xl;
 }
 
 .grainy {
