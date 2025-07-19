@@ -33,7 +33,9 @@ export default function Home() {
 
   return (
     <>
-      <div role="presentation" className="grainy pointer-events-none absolute inset-0 z-1000" />
+      <div className="absolute inset-0 z-1000 overflow-hidden">
+        <div role="presentation" className="grainy pointer-events-none absolute -inset-1/4 size-2/1" />
+      </div>
 
       <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 motion-reduce:animate-none lg:py-16">
         <section className="relative flex flex-col gap-4">

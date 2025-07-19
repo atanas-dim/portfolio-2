@@ -113,16 +113,16 @@ h6 {
 @keyframes animateGrainy {
   0%,
   100% {
-    background-position: 0px;
+    transform: translateX(0px);
   }
   25% {
-    background-position: 40px;
+    transform: translateX(40px);
   }
   50% {
-    background-position: 30px;
+    transform: translateX(30px);
   }
   75% {
-    background-position: 60px;
+    transform: translateX(60px);
   }
 }
 
