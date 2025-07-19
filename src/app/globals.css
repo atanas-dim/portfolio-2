@@ -8,14 +8,6 @@
   --font-souvenir: var(--font-souvenir);
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -24,13 +16,6 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
-}
-
-@utility rotate-card-3d {
-  --rotate-x: 8deg;
-  --rotate-y: 2deg;
-  --rotate-z: -1deg;
-  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) translateZ(40px);
 }
 
 html {
@@ -47,13 +32,15 @@ body {
   @apply text-balance;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-souvenir;
+.font-souvenir {
+  letter-spacing: 0.2px;
+}
+
+.rotate-card-3d:hover {
+  --rotate-x: 8deg;
+  --rotate-y: 2deg;
+  --rotate-z: -1deg;
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) translateZ(40px);
 }
 
 .glossy {

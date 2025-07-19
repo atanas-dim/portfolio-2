@@ -6,7 +6,7 @@ import gsap from 'gsap'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 
-const ELEMENTS = 'main,section,h1,h2,h3,p,.social-link,.card,.tool,footer'
+const ELEMENTS = 'main,section,h1,h2,p,.social-link,.card,.tool'
 
 export default function Home() {
   useEffect(() => {
@@ -35,10 +35,10 @@ export default function Home() {
       <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 opacity-0 motion-reduce:animate-none lg:py-16">
         <section className="flex flex-col gap-4">
           <div className="flex flex-col">
-            <h1 className="glossy text-3xl font-extrabold whitespace-nowrap lg:text-6xl">
+            <h1 className="glossy font-souvenir text-3xl font-extrabold whitespace-nowrap lg:text-6xl">
               Atanas Dimitrov <span className="text-2xl text-black lg:text-5xl lg:leading-tight">🪄</span>
             </h1>
-            <h2 className="glossy text-3xl font-extrabold whitespace-nowrap lg:text-6xl">
+            <h2 className="glossy font-souvenir text-3xl font-extrabold whitespace-nowrap lg:text-6xl">
               React Developer <span className="text-2xl text-black lg:text-5xl lg:leading-tight">⚛️</span>
             </h2>
           </div>
@@ -52,7 +52,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="social-link glossy text-lg whitespace-nowrap lg:text-2xl">
                     <span className="text-black">{link.emoji}</span>{' '}
-                    <span className="border-b-3 border-b-rose-950/20 transition-colors duration-500 hover:border-b-rose-950">
+                    <span className="border-b-2 border-b-rose-950/20 transition-colors duration-500 hover:border-b-rose-950">
                       {link.label}
                     </span>
                   </a>
@@ -62,14 +62,14 @@ export default function Home() {
           </ul>
         </section>
         <section className="flex flex-col gap-4">
-          <h2 className="glossy text-3xl font-extrabold lg:text-5xl lg:leading-tight">About me</h2>
+          <h2 className="glossy font-souvenir text-3xl font-extrabold lg:text-5xl lg:leading-tight">About me</h2>
           <p className="glossy max-w-180 text-xl lg:text-2xl">
             I’m a React developer with a passion for creating beautiful and functional web applications. I’m always
             excited to experiment with new ideas and technologies.
           </p>
         </section>
         <section className="flex flex-col gap-8">
-          <h2 className="glossy text-3xl font-extrabold lg:text-5xl lg:leading-tight">Projects</h2>
+          <h2 className="glossy font-souvenir text-3xl font-extrabold lg:text-5xl lg:leading-tight">Projects</h2>
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {PROJECTS.map((project, index) => {
               return (
@@ -86,7 +86,7 @@ export default function Home() {
           </ul>
         </section>
         <section className="flex flex-col gap-4">
-          <h2 className="glossy text-3xl font-extrabold lg:text-5xl lg:leading-tight">Tools</h2>
+          <h2 className="glossy font-souvenir text-3xl font-extrabold lg:text-5xl lg:leading-tight">Tools</h2>
           <p className="glossy text-xl lg:text-2xl">I use the following technologies to create my projects:</p>
           <ul className="grid w-fit grid-flow-col grid-rows-12 gap-x-6 gap-y-2 sm:grid-rows-8 sm:gap-x-10 md:grid-rows-6">
             {TOOLS.map((tool, index) => {
@@ -99,9 +99,9 @@ export default function Home() {
           </ul>
         </section>
       </main>
-      <footer className="w-full opacity-0">
+      <footer className="w-full">
         <div className="mx-auto max-w-5xl px-6">
-          <p className="border-t-3 border-t-red-950/10 py-6 text-xs text-rose-950 lg:text-sm">
+          <p className="border-t-2 border-t-red-950/10 py-6 text-xs text-rose-950 lg:text-sm">
             {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
           </p>
         </div>
@@ -127,7 +127,7 @@ const Card: FC<CardProps> = ({ project }) => {
 
   return (
     <div
-      className="hover:rotate-card-3d group relative size-full transition-all duration-500 ease-linear"
+      className="rotate-card-3d group relative size-full transition-all duration-500 ease-linear"
       style={{
         // @ts-expect-error - css vars
         '--rotate-x': `${rotate.x}deg`,
