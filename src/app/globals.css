@@ -50,7 +50,7 @@ body {
   transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) translateZ(40px);
 }
 
-@utility bg-glossy {
+@utility glossy {
   will-change: background-position;
 
   --highlight: rgba(255, 204, 211, 0.3);
