@@ -50,7 +50,7 @@ body {
   transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) translateZ(40px);
 }
 
-@utility glossy-base {
+@utility bg-glossy {
   will-change: background-position;
 
   background-image: linear-gradient(
@@ -69,8 +69,8 @@ body {
   animation: animateGlossy 45s infinite cubic-bezier(0.63, 0.16, 0.41, 0.87);
 }
 
-.text-glossy {
-  @apply glossy-base bg-clip-text text-transparent;
+@utility text-glossy {
+  @apply bg-glossy bg-clip-text text-transparent;
 }
 
 @keyframes animateGlossy {
