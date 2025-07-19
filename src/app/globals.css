@@ -43,7 +43,7 @@ body {
   letter-spacing: 0.0125em;
 }
 
-.rotate-card-3d:hover {
+@utility rotate-card-3d {
   --rotate-x: 8deg;
   --rotate-y: 2deg;
   --rotate-z: -1deg;

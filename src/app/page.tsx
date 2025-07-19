@@ -127,7 +127,7 @@ const Card: FC<CardProps> = ({ project }) => {
 
   return (
     <div
-      className="rotate-card-3d group relative size-full transition-all duration-500 ease-linear"
+      className="hover:rotate-card-3d active:rotate-card-3d group relative size-full transition-all duration-500 ease-linear"
       style={{
         // @ts-expect-error - css vars
         '--rotate-x': `${rotate.x}deg`,
