@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
 import { twJoin } from 'tailwind-merge'
+import GSAPPlugins from '@/components/GSAPPlugins'
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -28,7 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={twJoin(montserrat.variable, souvenirBold.variable)}>{children}</body>
+      <body className={twJoin(montserrat.variable, souvenirBold.variable)}>
+        <GSAPPlugins />
+        {children}
+      </body>
     </html>
   )
 }

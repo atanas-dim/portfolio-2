@@ -1,4 +1,5 @@
 'use client'
+
 import { ProjectDef, PROJECTS } from '@/resources/projects'
 import { SOCIAL_LINKS } from '@/resources/socialLinks'
 import { TOOLS } from '@/resources/tools'
@@ -6,26 +7,31 @@ import gsap from 'gsap'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 
-const ELEMENTS = 'main,h1,h2,p,.social-link,.card,.tool'
+const ELEMENTS = ' h1,h2,p,.social-link,.card,.tool'
 
 export default function Home() {
   useEffect(() => {
     gsap.set(ELEMENTS, {
       opacity: 0,
       y: 6,
-      transition: 'none',
     })
 
     gsap.to(ELEMENTS, {
       opacity: 1,
       y: 0,
-      duration: 0.5,
-      stagger: 0.1,
-      onComplete: () => {
-        gsap.set(ELEMENTS, {
-          clearProps: 'transition,transform',
-        })
+      stagger: 0.2,
+    })
+
+    const glossyEls = gsap.utils.selector('main')('h1,h2,h3')
+
+    gsap.to(glossyEls, {
+      scrollTrigger: {
+        trigger: 'main',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 2,
       },
+      backgroundPositionX: '200vmax',
     })
   }, [])
 
@@ -35,7 +41,7 @@ export default function Home() {
         <div role="presentation" className="grainy pointer-events-none absolute -inset-1/4 size-2/1" />
       </div>
 
-      <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 opacity-0 motion-reduce:animate-none lg:py-16">
+      <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 motion-reduce:animate-none lg:py-16">
         <section className="relative flex flex-col gap-4">
           <div className="flex flex-col">
             <h1 className="font-souvenir block text-3xl font-extrabold whitespace-nowrap lg:text-6xl">

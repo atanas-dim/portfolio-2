@@ -76,10 +76,6 @@ body {
   background-position: -25vmax 0;
   background-size: 50vmax 50vmax;
   background-repeat: repeat;
-
-  @media screen and (min-width: 648px) {
-    animation: animateGlossy 30s infinite linear;
-  }
 }
 
 @keyframes animateGlossy {
