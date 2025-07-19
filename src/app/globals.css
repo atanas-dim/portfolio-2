@@ -99,7 +99,7 @@ h6 {
 }
 
 h1 {
-  @apply 3xs:text-5xl text-4xl lg:text-6xl;
+  @apply xs:text-5xl text-4xl lg:text-6xl;
 }
 
 h2 {

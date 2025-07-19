@@ -44,11 +44,11 @@ export default function Home() {
 
       <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 motion-reduce:animate-none lg:py-16">
         <h1 className="whitespace-nowrap">
-          Atanas Dimitrov <span className="text-2xl text-black lg:text-5xl lg:leading-tight">🪄</span>
+          Atanas Dimitrov <span className="xs:text-3xl text-2xl text-black lg:text-6xl lg:leading-tight">🪄</span>
         </h1>
         <section className="relative flex flex-col gap-2">
           <h2 className="whitespace-nowrap">
-            React Developer <span className="text-2xl text-black lg:text-5xl lg:leading-tight">⚛️</span>
+            React Developer <span className="text-2xl text-black lg:text-4xl lg:leading-tight">⚛️</span>
           </h2>
 
           <ul className="flex size-fit gap-x-4 gap-y-2 text-4xl">
