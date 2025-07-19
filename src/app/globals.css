@@ -98,10 +98,7 @@ h6 {
   @apply glossy font-souvenir font-extrabold;
 }
 
-h1 {
-  @apply xs:text-5xl text-4xl lg:text-6xl;
-}
-
+h1,
 h2 {
   @apply 3xs:text-4xl text-3xl lg:text-5xl;
 }

@@ -32,7 +32,7 @@ export default function Home() {
         end: 'bottom top',
         scrub: 2,
       },
-      backgroundPositionX: '200vmax',
+      backgroundPositionX: (i) => `${150 + (i + 1) * 10}vmax`,
     })
   }, [])
 
@@ -43,14 +43,14 @@ export default function Home() {
       </div>
 
       <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 motion-reduce:animate-none lg:py-16">
-        <h1 className="whitespace-nowrap">
-          Atanas Dimitrov <span className="xs:text-4xl text-3xl text-black lg:text-5xl lg:leading-tight">🪄</span>
-        </h1>
-        <section className="relative flex flex-col gap-2">
-          <h2 className="whitespace-nowrap">
-            React Developer <span className="text-2xl text-black lg:text-4xl lg:leading-tight">⚛️</span>
-          </h2>
-
+        <section className="flex flex-col gap-2">
+          <h1 className="whitespace-nowrap">Atanas Dimitrov</h1>
+          <span className="text-lg whitespace-nowrap lg:text-2xl">
+            React Developer <span className="text-black">🪄 ⚛️</span>
+          </span>
+        </section>
+        <section className="flex flex-col gap-2">
+          <h2 className="whitespace-nowrap">Let&apos;s connect</h2>
           <ul className="flex size-fit gap-x-4 gap-y-2 text-4xl">
             {SOCIAL_LINKS.map((link, index) => {
               return (
@@ -70,7 +70,7 @@ export default function Home() {
             })}
           </ul>
         </section>
-        <section className="relative flex flex-col gap-4">
+        <section className="flex flex-col gap-4">
           <h2 className="lg:leading-tight">About me</h2>
           <p className="max-w-180">
             I’m a React developer with a passion for creating beautiful and functional web applications. I’m always
@@ -94,7 +94,7 @@ export default function Home() {
             })}
           </ul>
         </section>
-        <section className="relative flex flex-col gap-4">
+        <section className="flex flex-col gap-4">
           <h2 className="lg:leading-tight">Tools</h2>
           <p className="mb-6">I use the following technologies to create my projects:</p>
           <ul className="xs:grid-rows-8 grid w-fit grid-flow-col grid-rows-12 gap-x-6 gap-y-2 sm:gap-x-10 md:grid-rows-6">
