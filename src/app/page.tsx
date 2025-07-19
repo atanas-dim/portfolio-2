@@ -6,25 +6,23 @@ import gsap from 'gsap'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 
-const ELEMENTS = ' h1,h2,p,.social-link,.card,.tool'
+const ELEMENTS = 'main,h1,h2,p,.social-link,.card,.tool'
 
 export default function Home() {
   useEffect(() => {
-    const els = gsap.utils.selector('body')(ELEMENTS)
-
-    gsap.set(els, {
+    gsap.set(ELEMENTS, {
       opacity: 0,
       y: 6,
       transition: 'none',
     })
 
-    gsap.to(els, {
+    gsap.to(ELEMENTS, {
       opacity: 1,
       y: 0,
       duration: 0.5,
       stagger: 0.1,
       onComplete: () => {
-        gsap.set(els, {
+        gsap.set(ELEMENTS, {
           clearProps: 'transition,transform',
         })
       },
@@ -33,11 +31,11 @@ export default function Home() {
 
   return (
     <>
-      <div className="absolute inset-0 z-1000 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 z-1000 overflow-hidden">
         <div role="presentation" className="grainy pointer-events-none absolute -inset-1/4 size-2/1" />
       </div>
 
-      <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 motion-reduce:animate-none lg:py-16">
+      <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 opacity-0 motion-reduce:animate-none lg:py-16">
         <section className="relative flex flex-col gap-4">
           <div className="flex flex-col">
             <h1 className="font-souvenir block text-3xl font-extrabold whitespace-nowrap lg:text-6xl">
