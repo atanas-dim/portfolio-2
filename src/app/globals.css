@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
+  --breakpoint-3xs: 24rem;
   --breakpoint-2xs: 28rem;
   --breakpoint-xs: 32rem;
 
@@ -94,7 +95,20 @@ h3,
 h4,
 h5,
 h6 {
-  @apply glossy;
+  @apply glossy font-souvenir font-extrabold;
+}
+
+h1 {
+  @apply 3xs:text-5xl text-4xl lg:text-6xl;
+}
+
+h2 {
+  @apply 3xs:text-4xl text-3xl lg:text-5xl;
+}
+
+p,
+li {
+  @apply text-xl lg:text-2xl;
 }
 
 .grainy {
