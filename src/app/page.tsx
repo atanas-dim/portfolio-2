@@ -18,18 +18,16 @@ export default function Home() {
       transition: 'none',
     })
 
-    els.forEach((el, index) => {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        delay: 0.1 * index,
-        onComplete: () => {
-          gsap.set(el, {
-            clearProps: 'transition,transform',
-          })
-        },
-      })
+    gsap.to(els, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      onComplete: () => {
+        gsap.set(els, {
+          clearProps: 'transition,transform',
+        })
+      },
     })
   }, [])
 
@@ -65,7 +63,6 @@ export default function Home() {
               )
             })}
           </ul>
-          <GlossyOverlay />
         </section>
         <section className="relative flex flex-col gap-4">
           <h2 className="font-souvenir text-3xl font-extrabold lg:text-5xl lg:leading-tight">About me</h2>
@@ -73,7 +70,6 @@ export default function Home() {
             I’m a React developer with a passion for creating beautiful and functional web applications. I’m always
             excited to experiment with new ideas and technologies.
           </p>
-          <GlossyOverlay />
         </section>
         <section className="flex flex-col gap-8">
           <h2 className="font-souvenir text-3xl font-extrabold lg:text-5xl lg:leading-tight">Projects</h2>
@@ -104,7 +100,6 @@ export default function Home() {
               )
             })}
           </ul>
-          <GlossyOverlay />
         </section>
       </main>
       <footer className="relative w-full">
@@ -113,7 +108,6 @@ export default function Home() {
             {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
           </p>
         </div>
-        <GlossyOverlay />
       </footer>
     </>
   )
@@ -162,7 +156,7 @@ const Card: FC<CardProps> = ({ project }) => {
           <span className="absolute inset-0 bg-rose-200 mix-blend-color" />
         </div>
         <div className="flex h-full flex-col p-2">
-          <span className="font-souvenir mb-1 text-xl font-extrabold @2xs:text-2xl">{project.title}</span>
+          <h3 className="font-souvenir mb-1 text-xl font-extrabold @2xs:text-2xl">{project.title}</h3>
           <span className="mb-3 h-12 text-sm @2xs:text-base">{project.technologies}</span>
           <div className="mt-auto flex gap-2">
             {project.links.map((link, index) => {
@@ -179,16 +173,7 @@ const Card: FC<CardProps> = ({ project }) => {
             })}
           </div>
         </div>
-        <GlossyOverlay />
       </div>
-    </div>
-  )
-}
-
-const GlossyOverlay: FC = () => {
-  return (
-    <div role="presentation" className="pointer-events-none absolute inset-0 z-1 overflow-hidden mix-blend-lighten">
-      <div role="presentation" className="glossy pointer-events-none absolute inset-0 h-full w-[200vw]" />
     </div>
   )
 }

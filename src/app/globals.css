@@ -51,9 +51,10 @@ body {
 }
 
 @utility glossy {
+  color: transparent;
   will-change: background-position;
 
-  --highlight: rgba(255, 204, 211, 0.3);
+  --highlight: rgb(171, 130, 136);
   --dark: rgba(77, 2, 24);
 
   background-image: linear-gradient(
@@ -71,20 +72,33 @@ body {
     var(--highlight) 100%
   );
 
-  background-position: 0 0;
-  background-size: 130vmax 130vmax;
+  background-clip: text;
+  background-position: -25vmax 0;
+  background-size: 50vmax 50vmax;
   background-repeat: repeat;
-  animation: animateGlossy 60s infinite cubic-bezier(0.63, 0.16, 0.41, 0.87);
+
+  @media screen and (min-width: 648px) {
+    animation: animateGlossy 30s infinite linear;
+  }
 }
 
 @keyframes animateGlossy {
   0%,
   100% {
-    transform: translateX(-100vw);
+    background-position: 50vmax 0;
   }
   50% {
-    transform: translateX(0vw);
+    background-position: 0 0;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply glossy;
 }
 
 .grainy {
