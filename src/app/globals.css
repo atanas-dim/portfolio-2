@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  @apply font-montserrat relative w-full bg-rose-100 font-semibold text-rose-950;
+  @apply font-montserrat relative w-full overflow-x-hidden overflow-y-auto bg-rose-100 font-semibold text-rose-950;
   background-image: radial-gradient(circle at top center, #ffffff99, #fec3ca 60%);
 }
 
@@ -53,33 +53,37 @@ body {
 @utility bg-glossy {
   will-change: background-position;
 
+  --highlight: rgba(255, 204, 211, 0.3);
+  --dark: rgba(77, 2, 24);
+
   background-image: linear-gradient(
     45deg,
-    rgb(76, 5, 25) 25%,
-    rgba(76, 5, 25, 0.4) 25%,
-    rgb(76, 5, 25) 45%,
-    rgb(76, 5, 25) 75%,
-    rgba(76, 5, 25, 0.4) 75%,
-    rgb(76, 5, 25) 95%
+    var(--dark) 25%,
+    var(--highlight) 25%,
+    var(--dark) 35%,
+    var(--highlight) 35%,
+    var(--dark) 50%,
+    var(--dark) 75%,
+    var(--highlight) 75%,
+    var(--dark) 85%,
+    var(--highlight) 85%,
+    var(--dark) 100%,
+    var(--highlight) 100%
   );
 
   background-position: 0 0;
-  background-size: 50vmax 50vmax;
+  background-size: 130vmax 130vmax;
   background-repeat: repeat;
-  animation: animateGlossy 45s infinite cubic-bezier(0.63, 0.16, 0.41, 0.87);
-}
-
-@utility text-glossy {
-  @apply bg-glossy bg-clip-text text-transparent;
+  animation: animateGlossy 60s infinite cubic-bezier(0.63, 0.16, 0.41, 0.87);
 }
 
 @keyframes animateGlossy {
   0%,
   100% {
-    background-position: 0 0;
+    transform: translateX(-100vw);
   }
   50% {
-    background-position: 100vw 0;
+    transform: translateX(0vw);
   }
 }
 

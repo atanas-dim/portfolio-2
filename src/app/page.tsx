@@ -31,11 +31,17 @@ export default function Home() {
 
   return (
     <>
-      <div role="presentation" className="grainy pointer-events-none absolute inset-0 z-50" />
+      <div role="presentation" className="grainy pointer-events-none absolute inset-0 z-1000" />
+      <div
+        role="presentation"
+        className="pointer-events-none absolute inset-0 z-1000 overflow-hidden opacity-100 mix-blend-lighten">
+        <div role="presentation" className="bg-glossy pointer-events-none absolute inset-0 h-full w-[200vw]" />
+      </div>
+
       <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 opacity-0 motion-reduce:animate-none lg:py-16">
         <section className="flex flex-col gap-4">
           <div className="flex flex-col">
-            <h1 className="text-glossy font-souvenir text-3xl font-extrabold whitespace-nowrap text-transparent lg:text-6xl">
+            <h1 className="text-glossy font-souvenir text-3xl font-extrabold whitespace-nowrap lg:text-6xl">
               Atanas Dimitrov <span className="text-2xl text-black lg:text-5xl lg:leading-tight">🪄</span>
             </h1>
             <h2 className="text-glossy font-souvenir text-3xl font-extrabold whitespace-nowrap lg:text-6xl">
@@ -163,7 +169,7 @@ const Card: FC<CardProps> = ({ project }) => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-glossy font-souvenir flex items-center justify-center rounded-2xl bg-rose-950/60 px-4 py-2 text-lg whitespace-nowrap text-rose-50 transition-all duration-300 hover:bg-rose-800 hover:bg-none active:bg-rose-700 active:bg-none active:text-rose-50">
+                  className="font-souvenir flex items-center justify-center rounded-2xl bg-rose-950 px-4 py-2 text-lg whitespace-nowrap text-rose-50 transition-all duration-300 hover:bg-rose-800 hover:bg-none active:bg-rose-700 active:bg-none active:text-rose-50">
                   {link.label}
                 </a>
               )
