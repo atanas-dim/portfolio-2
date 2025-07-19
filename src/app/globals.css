@@ -50,16 +50,6 @@ body {
   transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) translateZ(40px);
 }
 
-@keyframes animateGlossy {
-  0%,
-  100% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 100vw 0;
-  }
-}
-
 @utility glossy-base {
   will-change: background-position;
 
