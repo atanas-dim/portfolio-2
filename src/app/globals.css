@@ -45,7 +45,7 @@
   h4,
   h5,
   h6 {
-    @apply glossy font-souvenir font-extrabold;
+    @apply glossy font-souvenir font-extrabold tracking-wide;
   }
 
   h1,
@@ -56,10 +56,6 @@
   p,
   li {
     @apply text-xl lg:text-2xl;
-  }
-
-  .font-souvenir {
-    letter-spacing: 0.0125em;
   }
 }
 
