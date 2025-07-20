@@ -139,7 +139,7 @@ const Card: FC<CardProps> = ({ project }) => {
     <div
       className="hover:rotate-card-3d active:rotate-card-3d group relative size-full transition-all duration-500 ease-linear *:select-none"
       style={{
-        // @ts-expect-error - css vars
+        // @ts-expect-error: Inline CSS custom properties are not typed by React style prop
         '--rotate-x': `${rotate.x}deg`,
         '--rotate-y': `${rotate.y}deg`,
         '--rotate-z': `${rotate.z}deg`,

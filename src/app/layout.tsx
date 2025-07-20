@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import localFont from 'next/font/local'
-import './globals.css'
+import '@/app/globals.css'
 import { twJoin } from 'tailwind-merge'
 import GSAPPlugins from '@/components/GSAPPlugins'
 

@@ -7,7 +7,7 @@ export const TOOLS = [
   'NextJS',
   'TailwindCSS',
   'SASS',
-  'MUI',
+  'Material UI',
   'Supabase',
   'Firebase',
   'MongoDB',
