@@ -25,6 +25,11 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 
+  ::selection {
+    color: var(--color-rose-950);
+    background: var(--color-rose-300);
+  }
+
   html {
     @apply w-full;
   }
@@ -52,15 +57,15 @@
   li {
     @apply text-xl lg:text-2xl;
   }
+
+  .font-souvenir {
+    letter-spacing: 0.0125em;
+  }
 }
 
 * {
   overscroll-behavior: none;
   @apply text-balance;
-}
-
-.font-souvenir {
-  letter-spacing: 0.0125em;
 }
 
 @utility rotate-card-3d {

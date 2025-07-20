@@ -173,7 +173,7 @@ const Card: FC<CardProps> = ({ project }) => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center rounded-2xl bg-rose-950 px-4 py-2 text-lg whitespace-nowrap text-rose-50 transition-all duration-300 hover:bg-rose-800 hover:bg-none active:bg-rose-700 active:bg-none active:text-rose-50">
+                  className="font-souvenir flex items-center justify-center rounded-2xl bg-rose-950 px-4 py-2 text-lg whitespace-nowrap text-rose-50 transition-all duration-300 hover:bg-rose-800 hover:bg-none active:bg-rose-700 active:bg-none active:text-rose-50">
                   {link.label}
                 </a>
               )
