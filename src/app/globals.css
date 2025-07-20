@@ -45,7 +45,7 @@
   h4,
   h5,
   h6 {
-    @apply glossy font-souvenir font-extrabold tracking-wide;
+    @apply glossy font-souvenir font-extrabold tracking-[0.0125em];
   }
 
   h1,
@@ -56,6 +56,10 @@
   p,
   li {
     @apply text-xl lg:text-2xl;
+  }
+
+  .font-souvenir {
+    @apply tracking-[0.0125em];
   }
 }
 
