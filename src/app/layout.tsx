@@ -18,8 +18,11 @@ const souvenirBold = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Portfolio - Atanas Dimitrov',
+  title: 'Atanas Dimitrov',
   description: 'React Developer',
+  icons: {
+    icon: '/favicon.png',
+  },
 }
 
 export default function RootLayout({
