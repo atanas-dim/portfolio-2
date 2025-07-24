@@ -18,10 +18,53 @@ const souvenirBold = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Atanas Dimitrov',
-  description: 'React Developer',
+  title: 'Atanas Dimitrov - Software Developer',
+  description: 'Building engaging web experiences using React, Next.js, and modern tools.',
   icons: {
     icon: '/favicon.png',
+  },
+  metadataBase: new URL('https://adimitrov.com'),
+  keywords: [
+    'Atanas Dimitrov',
+    'Software Developer',
+    'Web Developer',
+    'React Developer',
+    'Next.js',
+    'JavaScript',
+    'TypeScript',
+    'Full-Stack Developer',
+    'Front-End Developer',
+    'Node.js',
+    'Supabase',
+    'Firebase',
+    'SQL',
+    'Portfolio',
+    'UI Development',
+  ],
+  openGraph: {
+    title: 'Atanas Dimitrov - Software Developer',
+    description: 'Creating modern, efficient, and user-friendly web applications using React and Next.js.',
+    url: 'https://adimitrov.com',
+    siteName: 'Atanas Dimitrov - Portfolio',
+    images: [
+      {
+        url: 'https://www.adimitrov.com/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Atanas Dimitrov - Developer Portfolio',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Atanas Dimitrov - Software Developer',
+    description: 'Creating modern, efficient, and user-friendly web applications using React and Next.js.',
+    images: ['https://www.adimitrov.com/opengraph-image'],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
