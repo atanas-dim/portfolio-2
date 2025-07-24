@@ -1,9 +1,13 @@
-export const robots = {
-  rules: [
-    {
-      userAgent: '*',
-      allow: '/',
-    },
-  ],
-  sitemap: 'https://adimitrov.com/sitemap.xml',
+import type { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+      },
+    ],
+    sitemap: 'https://adimitrov.com/sitemap.xml',
+  }
 }
