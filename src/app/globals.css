@@ -26,8 +26,8 @@
   }
 
   ::selection {
-    color: var(--color-indigo-950);
-    background: var(--color-indigo-300);
+    color: var(--color-red-950);
+    background: var(--color-red-300);
   }
 
   /* TODO Review/refactor classes below. Use @apply everywhere possible or just reg css */
@@ -37,7 +37,7 @@
   }
 
   body {
-    @apply font-montserrat relative w-full overflow-x-hidden overflow-y-auto bg-indigo-300 font-semibold text-indigo-950;
+    @apply font-montserrat relative w-full overflow-x-hidden overflow-y-auto bg-red-300 font-semibold text-red-950;
     background-image: radial-gradient(circle at top center, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.35) 60%);
   }
 
@@ -81,8 +81,8 @@
   color: transparent;
   will-change: background-position;
 
-  --highlight: var(--color-gray-500);
-  --dark: var(--color-indigo-950);
+  --highlight: var(--color-stone-400);
+  --dark: var(--color-red-950);
 
   background-image: linear-gradient(
     45deg,
