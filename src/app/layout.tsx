@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Montserrat } from 'next/font/google'
 import localFont from 'next/font/local'
 import '@/app/globals.css'
@@ -66,6 +66,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+}
+
+export const viewport: Viewport = {
+  themeColor: 'rgb(224, 231, 255)',
 }
 
 export default function RootLayout({
