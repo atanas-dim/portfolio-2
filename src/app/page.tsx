@@ -48,7 +48,7 @@ export default function HomePage() {
                     rel="noopener noreferrer"
                     className="social-link text-lg whitespace-nowrap lg:text-2xl">
                     <span className="text-black">{link.emoji}</span>{' '}
-                    <span className="border-b-3 border-b-rose-950/20 transition-colors duration-500 hover:border-b-rose-950">
+                    <span className="border-b-3 border-b-indigo-950/20 transition-colors duration-500 hover:border-b-indigo-950">
                       {link.label}
                     </span>
                   </a>

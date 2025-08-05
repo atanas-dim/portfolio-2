@@ -30,12 +30,12 @@ const Card: FC<CardProps> = ({ project }) => {
       }}>
       <div
         role="presentation"
-        className="pointer-events-none absolute inset-0 top-14 scale-60 rounded-3xl bg-rose-950/40 opacity-100 blur-xl transition-all duration-500 ease-linear group-hover:scale-110 group-hover:opacity-100 group-active:scale-110 group-active:opacity-100"
+        className="pointer-events-none absolute inset-0 top-14 scale-60 rounded-3xl bg-indigo-950/40 opacity-100 blur-xl transition-all duration-500 ease-linear group-hover:scale-110 group-hover:opacity-100 group-active:scale-110 group-active:opacity-100"
       />
       <div
-        className="@container relative flex size-full flex-col gap-1 overflow-hidden rounded-3xl border-2 border-rose-950 bg-rose-100 p-2 group-hover:bg-rose-50"
+        className="@container relative flex size-full flex-col gap-1 overflow-hidden rounded-3xl border-2 border-indigo-950 bg-indigo-100 p-2 group-hover:bg-indigo-50"
         onPointerEnter={handlePointerEnter}>
-        <div className="relative flex aspect-square w-full shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-rose-950">
+        <div className="relative flex aspect-square w-full shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-indigo-950">
           <Image
             src={project.image}
             alt=""
@@ -44,7 +44,7 @@ const Card: FC<CardProps> = ({ project }) => {
             height={300}
             quality={100}
           />
-          <span className="absolute inset-0 bg-rose-200 mix-blend-color" />
+          <span className="absolute inset-0 bg-indigo-200 mix-blend-color" />
         </div>
         <div className="flex h-full flex-col p-2">
           <h3 className="mb-1 @2xs:text-2xl">{project.title}</h3>
@@ -57,7 +57,7 @@ const Card: FC<CardProps> = ({ project }) => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-souvenir flex items-center justify-center rounded-2xl bg-rose-950 px-4 py-2 text-lg whitespace-nowrap text-rose-50 transition-all duration-300 hover:bg-rose-800 hover:bg-none active:bg-rose-700 active:bg-none active:text-rose-50">
+                  className="font-souvenir flex items-center justify-center rounded-2xl bg-indigo-950 px-4 py-2 text-lg whitespace-nowrap text-indigo-50 transition-all duration-300 hover:bg-indigo-800 hover:bg-none active:bg-indigo-700 active:bg-none active:text-indigo-50">
                   {link.label}
                 </a>
               )
