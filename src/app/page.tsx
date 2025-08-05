@@ -95,7 +95,7 @@ export default function HomePage() {
           </ul>
         </section>
       </main>
-      <footer className="relative w-full">
+      <footer className="relative w-full overflow-hidden">
         <div className="mx-auto max-w-5xl px-6">
           <p className="border-t-3 border-t-indigo-950/10 py-6 text-xs! font-bold! lg:text-sm!">
             {new Date().getFullYear()} | Created with NextJS, TailwindCSS and GSAP
