@@ -44,7 +44,7 @@ const Card: FC<CardProps> = ({ project }) => {
             height={300}
             quality={100}
           />
-          <span className="absolute inset-0 bg-red-200 mix-blend-color" />
+          <span className="absolute inset-0 bg-red-400 mix-blend-soft-light" />
         </div>
         <div className="flex h-full flex-col p-2">
           <h3 className="mb-1 @2xs:text-2xl">{project.title}</h3>
