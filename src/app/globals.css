@@ -101,7 +101,7 @@
 
   background-clip: text;
   background-position: -25vmax 0;
-  background-size: 50vmax 100px;
+  background-size: 50vmax 50vmax;
   background-repeat: repeat-x;
 }
 
