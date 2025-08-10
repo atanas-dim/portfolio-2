@@ -31,15 +31,17 @@ export default function PageAnimations() {
     // SCROLL TRIGGERED GLOSSY EFFECT
     const glossyEls = gsap.utils.selector('main')(GLOSSY_ELEMENTS)
 
-    gsap.to(glossyEls, {
-      scrollTrigger: {
-        trigger: 'main',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 2,
-        fastScrollEnd: true,
-      },
-      backgroundPositionX: (i) => `${30 + (i + 1) * 10}vmax`,
+    glossyEls.forEach((el) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 2,
+          fastScrollEnd: true,
+        },
+        backgroundPositionX: '20vmax',
+      })
     })
   }, [])
 
