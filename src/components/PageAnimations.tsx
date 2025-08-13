@@ -30,25 +30,6 @@ export default function PageAnimations() {
 
     // SCROLL TRIGGERED GLOSSY EFFECT
     const glossyEls = gsap.utils.selector('main')(GLOSSY_ELEMENTS)
-    let lastScroll = 0
-    let dir = 0 // -1,0,1
-
-    // CHECK SCROLL DIRECTION
-    gsap.to(
-      {},
-      {
-        scrollTrigger: {
-          start: 0,
-          end: 'max',
-          onUpdate: (self) => {
-            const currentScroll = self.scroll() // current scroll position (vertical)
-
-            dir = currentScroll - lastScroll > 0 ? 1 : currentScroll - lastScroll < 0 ? -1 : 0
-            lastScroll = currentScroll
-          },
-        },
-      },
-    )
 
     glossyEls.forEach((el) => {
       gsap.to(el, {
@@ -57,15 +38,9 @@ export default function PageAnimations() {
           start: 'top bottom',
           end: 'bottom top',
           fastScrollEnd: true,
-          onUpdate: () => {
-            // Smoothly increment/decrement background-position-x by 1px per update to avoid jumps,
-            // especially during fast scrolling. Animating background-position-x directly can be performance-heavy,
-            // so we keep the updates minimal for better performance and smooth visuals.
-            const current = +gsap.getProperty(el, 'background-position-x').toString()
-            const newValue = (current + dir).toFixed()
-            el.style.backgroundPositionX = `${newValue}px`
-          },
+          scrub: 5,
         },
+        backgroundPositionX: Math.min(window.innerWidth / 2, 400),
       })
     })
   }, [])
