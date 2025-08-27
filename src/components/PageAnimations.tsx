@@ -8,28 +8,41 @@ const GLOSSY_ELEMENTS = 'h1,h2,h3'
 
 export default function PageAnimations() {
   useEffect(() => {
-    // TRANSITION IN STAGGERED
-    gsap.set('main', {
-      opacity: 0,
-    })
-    gsap.set(STAGGER_ELEMENTS, {
-      opacity: 0,
-      y: 6,
-    })
+    const main = gsap.utils.selector(document)('main')
+    if (!main) return
 
-    gsap
-      .timeline()
-      .to('main', {
-        opacity: 1,
-      })
-      .to(STAGGER_ELEMENTS, {
+    // -----------------------------
+    // STAGGERED CHILDREN ANIMATION PER SECTION
+    // -----------------------------
+    const sections = gsap.utils.selector(document)('section,footer')
+    console.log('sections', sections)
+
+    sections.forEach((section) => {
+      const children = gsap.utils.selector(section)(STAGGER_ELEMENTS)
+
+      // initial state for children
+      gsap.set(children, { opacity: 0, y: 6 })
+
+      // animate children with stagger when section scrolls into view
+      gsap.to(children, {
         opacity: 1,
         y: 0,
-        stagger: 0.2,
+        stagger: 0.15,
+        duration: 0.25,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          toggleActions: 'play reverse play reverse',
+        },
       })
+    })
 
-    // SCROLL TRIGGERED GLOSSY EFFECT
-    const glossyEls = gsap.utils.selector('main')(GLOSSY_ELEMENTS)
+    gsap.to('main', { opacity: 1 })
+
+    // -----------------------------
+    // GLOSSY SCROLL EFFECT
+    // -----------------------------
+    const glossyEls = gsap.utils.selector(main)(GLOSSY_ELEMENTS)
 
     glossyEls.forEach((el) => {
       gsap.to(el, {
