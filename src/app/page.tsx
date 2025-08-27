@@ -84,15 +84,20 @@ export default function HomePage() {
         <section className="flex flex-col gap-4">
           <h2 className="lg:leading-tight">Tools</h2>
           <p className="mb-6">I use the following technologies to create my projects:</p>
-          <ul className="xs:grid-rows-8 grid w-fit grid-flow-col grid-rows-12 gap-x-6 gap-y-2 sm:gap-x-10 md:grid-rows-6">
-            {TOOLS.map((tool, index) => {
-              return (
-                <li key={'tool-' + index} className="tool whitespace-nowrap">
-                  {tool}
-                </li>
-              )
-            })}
-          </ul>
+          <div className="w-fit columns-1 gap-y-4 sm:columns-2 lg:grid lg:[columns:auto] lg:columns-4 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-8 lg:[column-fill:balance]">
+            {TOOLS.map((section, i) => (
+              <div key={'tools-col-' + i} className="mr-8 mb-8 w-fit break-inside-avoid lg:mr-0 lg:mb-0">
+                <span className="tool mb-3 block text-xl font-bold md:text-2xl">{section.title}</span>
+                <ul className="list-disc space-y-1 pl-5 marker:text-base">
+                  {section.items.map((tool, j) => (
+                    <li key={`${section.title}-${j}`} className="tool">
+                      <span>{tool}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </section>
       </main>
       <footer className="relative w-full overflow-hidden">

@@ -55,6 +55,10 @@
     @apply 3xs:text-4xl text-3xl lg:text-5xl;
   }
 
+  h3 {
+    @apply 3xs:text-2xl text-xl lg:text-3xl;
+  }
+
   p,
   li {
     @apply text-xl lg:text-2xl;
