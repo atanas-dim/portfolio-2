@@ -32,7 +32,8 @@ export default function PageAnimations() {
         scrollTrigger: {
           trigger: section,
           start: 'top bottom',
-          toggleActions: 'play reverse play reverse',
+          toggleActions: 'play none play none',
+          once: true,
         },
       })
     })
