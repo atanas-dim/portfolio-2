@@ -3,7 +3,7 @@
 import gsap from 'gsap'
 import { useEffect } from 'react'
 
-const STAGGER_ELEMENTS = 'section,.card,.tool,footer p'
+const STAGGER_ELEMENTS = '.heading,p,.social-link,.card,.tool'
 const GLOSSY_ELEMENTS = 'h1,h2,h3'
 
 export default function PageAnimations() {
@@ -16,31 +16,40 @@ export default function PageAnimations() {
 
     staggeredEls.forEach((child, index) => {
       gsap.set(child, { opacity: 0, y: 20 })
+      const top = child.getBoundingClientRect().top
+      const isLast = index === staggeredEls.length - 1
 
-      // If element is already visible on mount → play in immediately
-      if (child.getBoundingClientRect().top < window.innerHeight) {
-        gsap.to(child, {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-        })
-      } else {
-        // Otherwise use scrub
-        gsap.to(child, {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'power2.out',
+      gsap
+        .timeline({
           scrollTrigger: {
             trigger: child,
             start: 'top bottom',
-            end: () => (index === staggeredEls.length - 1 ? 'bottom bottom' : 'top 70%'),
-            scrub: 4,
+            end: () => (isLast ? 'top 50%' : 'bottom top'),
             fastScrollEnd: true,
+            scrub: 1,
           },
         })
-      }
+        .to(child, {
+          opacity: 1,
+          y: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+        })
+        .to(
+          {},
+          {
+            duration: () => {
+              if (top < window.innerHeight) return 2
+              return 1
+            },
+          },
+        )
+        .to(child, {
+          opacity: 0,
+          y: -20,
+          duration: 0.3,
+          ease: 'power2.out',
+        })
     })
 
     // Reveal main after all initial opacity and offsets are set on elements

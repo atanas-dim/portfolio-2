@@ -31,13 +31,13 @@ export default function HomePage() {
 
       <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 opacity-0 motion-reduce:animate-none lg:py-16">
         <section className="flex flex-col gap-2">
-          <h1 className="whitespace-nowrap">Atanas Dimitrov</h1>
+          <h1 className="heading whitespace-nowrap">Atanas Dimitrov</h1>
           <p className="text-2xl whitespace-nowrap lg:text-3xl">
             Software Developer <span className="text-black">🪄 ⚛️</span>
           </p>
         </section>
         <section className="flex flex-col gap-2">
-          <h2 className="whitespace-nowrap">Let&apos;s connect</h2>
+          <h2 className="heading whitespace-nowrap">Let&apos;s connect</h2>
           <ul className="flex size-fit gap-x-4 gap-y-2 text-4xl">
             {SOCIAL_LINKS.map((link, index) => {
               return (
@@ -58,14 +58,14 @@ export default function HomePage() {
           </ul>
         </section>
         <section className="flex flex-col gap-4">
-          <h2 className="lg:leading-tight">About me</h2>
+          <h2 className="heading lg:leading-tight">About me</h2>
           <p className="max-w-180">
             I’m a React developer with a passion for creating beautiful and functional web applications. I’m always
             excited to experiment with new ideas and technologies.
           </p>
         </section>
         <section className="flex flex-col gap-8">
-          <h2 className="lg:leading-tight">Projects</h2>
+          <h2 className="heading lg:leading-tight">Projects</h2>
           <ul className="2xs:grid-cols-2 grid grid-cols-1 gap-4 md:grid-cols-3">
             {PROJECTS.map((project, index) => {
               return (
@@ -82,7 +82,7 @@ export default function HomePage() {
           </ul>
         </section>
         <section className="flex flex-col gap-4">
-          <h2 className="lg:leading-tight">Tools</h2>
+          <h2 className="heading lg:leading-tight">Tools</h2>
           <p className="mb-6">I use the following technologies to create my projects:</p>
           <div className="w-fit columns-1 gap-y-4 sm:columns-2 lg:grid lg:columns-4 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-8 lg:[column-fill:balance]">
             {TOOLS.map((section, i) => (

@@ -29,10 +29,6 @@ const Card: FC<CardProps> = ({ project }) => {
         '--rotate-z': `${rotate.z}deg`,
       }}>
       <div
-        role="presentation"
-        className="pointer-events-none absolute inset-0 top-14 scale-60 rounded-3xl bg-red-950/40 opacity-100 blur-xl transition-all duration-500 ease-linear group-hover:scale-110 group-hover:opacity-100 group-active:scale-110 group-active:opacity-100"
-      />
-      <div
         className="@container relative flex size-full flex-col gap-1 overflow-hidden rounded-3xl border-2 border-red-950 bg-red-50 p-2 group-hover:bg-white"
         onPointerEnter={handlePointerEnter}>
         <div className="relative flex aspect-square w-full shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-red-950">
@@ -42,7 +38,7 @@ const Card: FC<CardProps> = ({ project }) => {
             className="size-full object-cover grayscale"
             width={300}
             height={300}
-            quality={100}
+            priority
           />
           <span className="absolute inset-0 bg-red-400 mix-blend-soft-light" />
         </div>
