@@ -37,7 +37,7 @@ export default function PageAnimations() {
           scrollTrigger: {
             trigger: child,
             start: 'top bottom',
-            end: () => (index === staggeredEls.length - 1 ? 'bottom bottom' : 'top 80%'),
+            end: () => (index === staggeredEls.length - 1 ? 'bottom bottom' : 'top 70%'),
             scrub: 4,
           },
         })
