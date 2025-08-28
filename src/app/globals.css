@@ -47,7 +47,7 @@
   h4,
   h5,
   h6 {
-    @apply glossy font-souvenir font-extrabold tracking-[0.0125em];
+    @apply glossy font-souvenir w-fit font-extrabold tracking-[0.0125em];
   }
 
   h1,

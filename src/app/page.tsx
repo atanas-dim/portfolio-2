@@ -29,7 +29,7 @@ export default function HomePage() {
         <div role="presentation" className="grainy pointer-events-none absolute -inset-1/4 size-2/1" />
       </div>
 
-      <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-8 opacity-0 motion-reduce:animate-none lg:py-16">
+      <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-10 opacity-0 motion-reduce:animate-none lg:py-16">
         <section className="flex flex-col gap-2">
           <h1 className="heading whitespace-nowrap">Atanas Dimitrov</h1>
           <p className="text-2xl whitespace-nowrap lg:text-3xl">

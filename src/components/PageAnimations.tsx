@@ -15,23 +15,30 @@ export default function PageAnimations() {
     const staggeredEls = gsap.utils.selector(document)(STAGGER_ELEMENTS)
 
     staggeredEls.forEach((child, index) => {
-      gsap.set(child, { opacity: 0, y: 20 })
+      const isCard = Object.values(child.classList).includes('card')
       const top = child.getBoundingClientRect().top
       const isLast = index === staggeredEls.length - 1
+
+      gsap.set(child, {
+        opacity: 0,
+        y: 20,
+        scale: isCard ? 0.95 : 1,
+      })
 
       gsap
         .timeline({
           scrollTrigger: {
             trigger: child,
             start: 'top bottom',
-            end: () => (isLast ? 'top 50%' : 'bottom top'),
+            end: isLast ? 'top 50%' : 'bottom top',
             fastScrollEnd: true,
-            scrub: 1,
+            scrub: 2,
           },
         })
         .to(child, {
           opacity: 1,
           y: 0,
+          scale: 1,
           duration: 0.3,
           ease: 'power2.out',
         })
@@ -43,10 +50,11 @@ export default function PageAnimations() {
               return 1
             },
           },
-        )
+        ) // delay for scrollTrigger scrub
         .to(child, {
           opacity: 0,
           y: -20,
+          scale: isCard ? 0.95 : 1,
           duration: 0.3,
           ease: 'power2.out',
         })
@@ -65,9 +73,9 @@ export default function PageAnimations() {
           start: 'top bottom',
           end: 'bottom top',
           fastScrollEnd: true,
-          scrub: true,
+          scrub: 2,
         },
-        backgroundPositionX: Math.min(window.innerWidth / 3, 180),
+        backgroundPositionX: Math.min(window.innerWidth / 3, 260),
       })
     })
   }, [])
