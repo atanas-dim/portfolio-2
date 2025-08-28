@@ -71,7 +71,7 @@
 
 * {
   overscroll-behavior: none;
-  @apply text-balance;
+  @apply text-pretty;
 }
 
 @utility rotate-card-3d {

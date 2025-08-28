@@ -6,6 +6,7 @@ import shadersPlaygroundImg from '@/assets/images/shaders-playground.jpg'
 import tiledImageLoaderImg from '@/assets/images/tiled-image-loader.jpg'
 import calendarImg from '@/assets/images/react-grid-calendar.jpg'
 import nextLocalizationImg from '@/assets/images/next-localization.jpg'
+import workoutDirectoryImg from '@/assets/images/workout-directory.jpg'
 
 export type ProjectDef = {
   videoSrc?: string
@@ -28,6 +29,17 @@ export const PROJECTS: ProjectDef[] = [
       {
         label: 'Live',
         href: 'https://next-localization-phi.vercel.app',
+      },
+    ],
+  },
+  {
+    image: workoutDirectoryImg,
+    title: 'Workout Directory',
+    technologies: 'PWA, TypeScript, Next.js, Supabase, MUI Joy',
+    links: [
+      {
+        label: 'Live',
+        href: 'https://workoutdirectory.com/',
       },
     ],
   },
