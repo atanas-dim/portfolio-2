@@ -33,7 +33,7 @@ const Card: FC<CardProps> = ({ project }) => {
         className="pointer-events-none absolute inset-0 top-14 scale-60 rounded-3xl bg-red-950/40 opacity-100 blur-xl transition-all duration-500 ease-linear group-hover:scale-110 group-hover:opacity-100 group-active:scale-110 group-active:opacity-100"
       />
       <div
-        className="@container relative flex size-full flex-col gap-1 overflow-hidden rounded-3xl border-2 border-red-950 bg-red-100 p-2 group-hover:bg-red-50"
+        className="@container relative flex size-full flex-col gap-1 overflow-hidden rounded-3xl border-2 border-red-950 bg-red-50 p-2 group-hover:bg-white"
         onPointerEnter={handlePointerEnter}>
         <div className="relative flex aspect-square w-full shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-red-950">
           <Image

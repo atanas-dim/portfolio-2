@@ -37,8 +37,8 @@
   }
 
   body {
-    @apply font-montserrat relative w-full overflow-x-hidden overflow-y-auto bg-red-300 font-semibold text-red-950;
-    background-image: radial-gradient(circle at top center, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.35) 60%);
+    @apply font-montserrat relative w-full overflow-x-hidden overflow-y-auto bg-red-200 font-semibold text-red-950;
+    background-image: radial-gradient(circle at top center, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 60%);
   }
 
   h1,
@@ -104,7 +104,7 @@
   );
 
   background-clip: text;
-  background-position: -25vmax 0;
+  background-position: 0 0;
   background-size: 50vmax 50vmax;
   background-repeat: repeat-x;
 }

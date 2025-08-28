@@ -11,9 +11,7 @@ export default function PageAnimations() {
     const main = gsap.utils.selector(document)('main')
     if (!main) return
 
-    // -----------------------------
-    // STAGGERED CHILDREN ANIMATION PER SECTION
-    // -----------------------------
+    // REVEAL ANIMATION
     const staggeredEls = gsap.utils.selector(document)(STAGGER_ELEMENTS)
 
     staggeredEls.forEach((child, index) => {
@@ -48,9 +46,7 @@ export default function PageAnimations() {
     // Reveal main after all initial opacity and offsets are set on elements
     gsap.to(main, { opacity: 1, duration: 0.6 })
 
-    // -----------------------------
     // GLOSSY SCROLL EFFECT
-    // -----------------------------
     const glossyEls = gsap.utils.selector(main)(GLOSSY_ELEMENTS)
 
     glossyEls.forEach((el) => {
@@ -60,9 +56,9 @@ export default function PageAnimations() {
           start: 'top bottom',
           end: 'bottom top',
           fastScrollEnd: true,
-          scrub: 5,
+          scrub: true,
         },
-        backgroundPositionX: Math.min(window.innerWidth / 2, 400),
+        backgroundPositionX: Math.min(window.innerWidth / 3, 180),
       })
     })
   }, [])
