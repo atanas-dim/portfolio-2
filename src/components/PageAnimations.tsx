@@ -39,6 +39,7 @@ export default function PageAnimations() {
             start: 'top bottom',
             end: () => (index === staggeredEls.length - 1 ? 'bottom bottom' : 'top 70%'),
             scrub: 4,
+            fastScrollEnd: true,
           },
         })
       }
