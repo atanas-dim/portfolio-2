@@ -82,7 +82,7 @@ const Card: FC<CardProps> = ({ project }) => {
         className="absolute inset-0 -translate-z-[120px] rounded-3xl border-2 border-red-950 bg-red-950 px-4 py-6 text-red-200">
         <div className="flex -scale-x-100 flex-col gap-4">
           <span className="font-souvenir text-xl @2xs:text-2xl @xs:text-3xl">{project.title}</span>
-          <p className="text-base @2xs:text-lg @xs:text-xl">{project.description}</p>
+          <p className="text-sm @2xs:text-base @xs:text-xl">{project.description}</p>
         </div>
       </div>
 
@@ -102,7 +102,7 @@ const Card: FC<CardProps> = ({ project }) => {
               height={300}
               priority
             />
-            <span className="absolute inset-0 bg-red-400 mix-blend-soft-light" />
+            <div role="presentation" className="absolute inset-0 bg-red-400 mix-blend-soft-light" />
           </div>
           <div className="flex h-full flex-col p-2">
             <h3 className="mb-1 @2xs:text-2xl">{project.title}</h3>

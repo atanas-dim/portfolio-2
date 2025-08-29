@@ -1,3 +1,4 @@
+import Background from '@/components/Background'
 import Card from '@/components/Card'
 import PageAnimations from '@/components/PageAnimations'
 import { PROJECTS } from '@/resources/projects'
@@ -18,6 +19,8 @@ export default function HomePage() {
 
   return (
     <>
+      <PageAnimations />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -29,7 +32,7 @@ export default function HomePage() {
         <div role="presentation" className="grainy pointer-events-none absolute -inset-1/4 size-2/1" />
       </div>
 
-      <main className="mx-auto mb-16 flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-10 opacity-0 motion-reduce:animate-none lg:py-16">
+      <main className="mx-auto flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-10 opacity-0 motion-reduce:animate-none lg:py-16">
         <section className="flex flex-col gap-2">
           <h1 className="heading whitespace-nowrap">Atanas Dimitrov</h1>
           <p className="text-2xl whitespace-nowrap lg:text-3xl">
@@ -67,7 +70,7 @@ export default function HomePage() {
         <section className="flex flex-col gap-8">
           <h2 className="heading lg:leading-tight">Projects</h2>
           <p>Flip cards to learn more 🔁</p>
-          <ul className="2xs:grid-cols-2 grid grid-cols-1 gap-8 sm:gap-6 md:grid-cols-3">
+          <ul className="xs:grid-cols-2 grid grid-cols-1 gap-8 sm:gap-6 md:grid-cols-3">
             {PROJECTS.map((project, index) => {
               return (
                 <li key={'project-' + index}>
@@ -96,14 +99,14 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <footer className="relative w-full overflow-hidden">
+      <footer className="relative mt-40 w-full overflow-hidden md:mt-120">
         <div className="mx-auto max-w-5xl px-6">
           <p className="border-t-3 border-t-red-950/10 py-6 text-xs! font-bold! lg:text-sm!">
             {new Date().getFullYear()} | Created with Next.js, TailwindCSS and GSAP
           </p>
         </div>
       </footer>
-      <PageAnimations />
+      <Background />
     </>
   )
 }
