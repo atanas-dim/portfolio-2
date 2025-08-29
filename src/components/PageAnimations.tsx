@@ -1,6 +1,7 @@
 'use client'
 
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useEffect } from 'react'
 
 const STAGGER_ELEMENTS = '.heading,p,.social-link,.card,.tool'
@@ -8,25 +9,32 @@ const GLOSSY_ELEMENTS = 'h1,h2,h3'
 
 export default function PageAnimations() {
   useEffect(() => {
-    const main = gsap.utils.selector(document)('main')
-    if (!main) return
+    let animations: Array<GSAPTimeline | GSAPTween> = []
 
-    // REVEAL ANIMATION
-    const staggeredEls = gsap.utils.selector(document)(STAGGER_ELEMENTS)
+    const setupAnimations = async () => {
+      const main = gsap.utils.selector(document)('main')
+      if (!main) return
 
-    staggeredEls.forEach((child, index) => {
-      const isCard = Object.values(child.classList).includes('card')
-      const top = child.getBoundingClientRect().top
-      const isLast = index === staggeredEls.length - 1
+      // Kill previous timelines & ScrollTriggers
+      animations.forEach(anim => anim.kill())
+      animations = []
+      ScrollTrigger.getAll().forEach(st => st.kill())
 
-      gsap.set(child, {
-        opacity: 0,
-        y: 20,
-        scale: isCard ? 0.95 : 1,
-      })
+      // REVEAL ANIMATION
+      const staggeredEls = gsap.utils.selector(document)(STAGGER_ELEMENTS)
 
-      gsap
-        .timeline({
+      staggeredEls.forEach((child, index) => {
+        const isCard = Object.values(child.classList).includes('card')
+        const top = child.getBoundingClientRect().top
+        const isLast = index === staggeredEls.length - 1
+
+        gsap.set(child, {
+          opacity: 0,
+          y: 20,
+          scale: isCard ? 0.95 : 1,
+        })
+
+        const tl = gsap.timeline({
           scrollTrigger: {
             trigger: child,
             start: 'top bottom',
@@ -35,50 +43,63 @@ export default function PageAnimations() {
             scrub: 2,
           },
         })
-        .to(child, {
+
+        tl.to(child, {
           opacity: 1,
           y: 0,
           scale: 1,
           duration: 0.3,
           ease: 'power2.out',
         })
-        .to(
-          {},
-          {
-            duration: () => {
-              if (top < window.innerHeight) return 2
-              return 1
-            },
-          },
-        ) // delay for scrollTrigger scrub
-        .to(child, {
-          opacity: 0,
-          y: -20,
-          scale: isCard ? 0.95 : 1,
-          duration: 0.3,
-          ease: 'power2.out',
-        })
-    })
+          .to({}, { duration: top < window.innerHeight ? 2 : 1 })
+          .to(child, {
+            opacity: 0,
+            y: -20,
+            scale: isCard ? 0.95 : 1,
+            duration: 0.3,
+            ease: 'power2.out',
+          })
 
-    // Reveal main after all initial opacity and offsets are set on elements
-    gsap.to(main, { opacity: 1, duration: 0.6 })
-
-    // GLOSSY SCROLL EFFECT
-    const glossyEls = gsap.utils.selector(main)(GLOSSY_ELEMENTS)
-
-    glossyEls.forEach((el) => {
-      gsap.to(el, {
-        scrollTrigger: {
-          trigger: el,
-          start: 'top bottom',
-          end: 'bottom top',
-          fastScrollEnd: true,
-          scrub: 2,
-        },
-        backgroundPositionX: Math.min(window.innerWidth / 3, 260),
+        animations.push(tl)
       })
-    })
+
+      gsap.to(main, { opacity: 1, duration: 0.6 })
+
+      // GLOSSY SCROLL EFFECT
+      const glossyEls = gsap.utils.selector(main)(GLOSSY_ELEMENTS)
+      glossyEls.forEach((el) => {
+        const tl = gsap.to(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: 'top bottom',
+            end: 'bottom top',
+            fastScrollEnd: true,
+            scrub: 2,
+          },
+          backgroundPositionX: Math.min(window.innerWidth / 3, 260),
+        })
+        animations.push(tl)
+      })
+
+      ScrollTrigger.refresh()
+    }
+
+    setupAnimations()
+
+    const resetAnimations = async () => {
+      await gsap.delayedCall(0.5, () => { }) // wait a tick for layout to stabilize
+      setupAnimations()
+    }
+
+    window.addEventListener('orientationchange', resetAnimations)
+
+    return () => {
+      window.removeEventListener('orientationchange', resetAnimations)
+      animations.forEach(tl => tl.kill())
+      ScrollTrigger.getAll().forEach(st => st.kill())
+    }
   }, [])
+
 
   return null
 }

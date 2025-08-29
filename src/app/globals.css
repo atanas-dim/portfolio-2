@@ -74,13 +74,6 @@
   @apply text-pretty;
 }
 
-@utility rotate-card-3d {
-  --rotate-x: 8deg;
-  --rotate-y: 2deg;
-  --rotate-z: -1deg;
-  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) translateZ(40px);
-}
-
 @utility glossy {
   color: transparent;
   will-change: background-position;

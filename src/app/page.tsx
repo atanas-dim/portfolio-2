@@ -66,15 +66,10 @@ export default function HomePage() {
         </section>
         <section className="flex flex-col gap-8">
           <h2 className="heading lg:leading-tight">Projects</h2>
-          <ul className="2xs:grid-cols-2 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <ul className="2xs:grid-cols-2 grid grid-cols-1 gap-8 sm:gap-6 md:grid-cols-3">
             {PROJECTS.map((project, index) => {
               return (
-                <li
-                  key={'project-' + index}
-                  style={{
-                    perspective: 1200,
-                  }}
-                  className="card hover:z-10 active:z-10">
+                <li key={'project-' + index}>
                   <Card project={project} />
                 </li>
               )
