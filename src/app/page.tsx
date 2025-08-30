@@ -117,12 +117,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        <div role="presentation" className="absolute bottom-0 left-0 -z-1 max-h-360 w-full overflow-hidden">
+        <div
+          role="presentation"
+          className="absolute bottom-0 left-0 -z-1 flex w-full justify-center overflow-hidden pt-20">
           <Image
             role="presentation"
             src={marsImg}
             alt=""
-            className="bg-image w-full max-w-none object-contain"
+            className="bg-image h-full w-full max-w-[1920px] scale-112 object-contain xl:scale-100"
             quality={100}
           />
         </div>

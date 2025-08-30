@@ -2,9 +2,8 @@
 
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
-const STAGGER_ELEMENTS = '.heading,p,.social-link,.card,.tool'
 const GLOSSY_ELEMENTS = 'h1,h2,h3'
 
 export default function PageAnimations() {
@@ -63,6 +62,82 @@ export default function PageAnimations() {
       animations.forEach((tl) => tl.kill())
     }
   }, [])
+
+  const handleOrientation = useCallback((event: DeviceOrientationEvent) => {
+    const images = gsap.utils.selector(document.body)('.bg-image')
+
+    const beta = event.beta || 0 // front-back tilt
+    const gamma = event.gamma || 0 // left-right tilt
+
+    // Clamp tilt to avoid excessive movement
+    const xTilt = -Math.max(-30, Math.min(30, gamma))
+    const yTilt = -Math.max(-30, Math.min(30, beta))
+
+    // Map tilt to pixel movement
+    const maxMove = 20 // adjust for desired effect
+    const x = (xTilt / 30) * maxMove
+    const y = (yTilt / 30) * maxMove
+
+    gsap.to(images, {
+      x,
+      y,
+      ease: 'power2.out',
+      duration: 0.2,
+    })
+  }, [])
+
+  useEffect(() => {
+    const enableMotion = () => {
+      // Remove any existing animations
+      gsap.getTweensOf('.bg-image').forEach((tween) => tween.kill())
+
+      if (
+        typeof DeviceOrientationEvent !== 'undefined' &&
+        typeof (DeviceOrientationEvent as any).requestPermission === 'function'
+      ) {
+        // iOS 13+ requires permission
+        ;(DeviceOrientationEvent as any)
+          .requestPermission()
+          .then((response: string) => {
+            if (response === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation, true)
+            } else {
+              console.warn('Permission denied for device orientation')
+            }
+          })
+          .catch(console.error)
+      } else {
+        // Non-iOS mobile or Android
+        window.addEventListener('deviceorientation', handleOrientation, true)
+      }
+
+      removeGestureListeners()
+    }
+
+    const removeGestureListeners = () => {
+      document.removeEventListener('click', enableMotion)
+      document.removeEventListener('touchstart', enableMotion)
+      document.removeEventListener('keydown', enableMotion)
+      document.removeEventListener('scroll', enableMotion)
+    }
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    const isAndroid = /Android/i.test(navigator.userAgent)
+    const isMobile = isIOS || isAndroid
+
+    if (isMobile) {
+      const gestureOptions = { once: true }
+      document.addEventListener('click', enableMotion, gestureOptions)
+      document.addEventListener('touchstart', enableMotion, gestureOptions)
+      document.addEventListener('keydown', enableMotion, gestureOptions)
+      document.addEventListener('scroll', enableMotion, gestureOptions)
+    }
+
+    return () => {
+      window.removeEventListener('deviceorientation', handleOrientation, true)
+      removeGestureListeners()
+    }
+  }, [handleOrientation])
 
   return null
 }

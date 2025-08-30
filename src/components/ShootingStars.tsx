@@ -85,17 +85,25 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 15, minDuration =
 
     startStarsAnimation()
 
+    let timeout: NodeJS.Timeout | undefined = undefined
+
     const resetAnimations = async () => {
       stars.forEach((star) => star.remove())
       stars = []
-      await gsap.delayedCall(2, () => {}) // wait for layout to stabilize
-      startStarsAnimation()
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        startStarsAnimation()
+      }, 2000)
+      // wait for layout to stabilize
     }
 
     window.addEventListener('orientationchange', resetAnimations)
+    window.addEventListener('resize', resetAnimations)
 
     return () => {
+      clearTimeout(timeout)
       window.removeEventListener('orientationchange', resetAnimations)
+      window.removeEventListener('resize', resetAnimations)
       stars.forEach((star) => star.remove())
     }
   }, [count, minDuration, maxDuration])
