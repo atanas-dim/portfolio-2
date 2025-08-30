@@ -1,49 +1,56 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { gsap } from 'gsap'
 
-interface ShootingStarsProps {
+type ShootingStarsProps = {
   count?: number
   minDuration?: number
   maxDuration?: number
 }
 
-const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 25, minDuration = 7, maxDuration = 18 }) => {
-  const containerRef = useRef<HTMLDivElement | null>(null)
+const MAX_STAR_WIDTH = 80
 
+const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 15, minDuration = 7, maxDuration = 18 }) => {
   useEffect(() => {
-    if (!containerRef.current) return
-    const container = containerRef.current
-    const { width, height } = container.getBoundingClientRect()
+    const main = document.getElementsByTagName('main')[0]
+    if (!main) return
+    const { width, height } = document.body.getBoundingClientRect()
 
     for (let i = 0; i < count; i++) {
       const star = document.createElement('div')
       star.classList.add('shooting-star')
-      container.appendChild(star)
+      main.appendChild(star)
       animateStar(star)
     }
 
     function animateStar(star: HTMLDivElement) {
-      // Completely random angle (0 → 2π)
+      // Random angle (0 → 2π)
       const angle = Math.random() * 2 * Math.PI
-      const distance = Math.max(width, height) * 0.5 // adjust distance to fit inside container
+      const maxDistance = Math.min(width, height) * 0.5
 
-      // Calculate movement along the rotated axis
-      const dx = Math.cos(angle) * distance
-      const dy = Math.sin(angle) * distance
+      // Movement vector along rotated axis
+      const dx = Math.cos(angle) * maxDistance
+      const dy = Math.sin(angle) * maxDistance
 
-      // Start somewhere inside the container (random positions)
-      const startX = Math.random() * width
-      const startY = Math.random() * height
+      // Random start inside container
+      const startX = gsap.utils.random(MAX_STAR_WIDTH, width - MAX_STAR_WIDTH)
+      const startY = gsap.utils.random(MAX_STAR_WIDTH, height - MAX_STAR_WIDTH)
 
-      const endX = startX + dx
-      const endY = startY + dy
+      // Clamp dx/dy so that end stays inside container
+      const endX = Math.min(Math.max(startX + dx, 0), width - MAX_STAR_WIDTH) - startX
+      const endY = Math.min(Math.max(startY + dy, 0), height - MAX_STAR_WIDTH) - startY
 
       const rotation = (angle * 180) / Math.PI
 
+      const movementDistance = Math.sqrt(dx * dx + dy * dy)
+      const duration = gsap.utils.mapRange(0, maxDistance, minDuration, maxDuration, movementDistance)
+
       gsap.set(star, {
-        x: startX,
-        y: startY,
+        left: startX,
+        top: startY,
+        x: 0,
+        y: 0,
+        width: gsap.utils.random(MAX_STAR_WIDTH / 2, MAX_STAR_WIDTH),
         rotate: rotation,
         opacity: 0,
         '--star-color': 'rgb(255, 100, 103)',
@@ -54,7 +61,7 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 25, minDuration =
         y: endY,
         opacity: 1,
         '--star-color': 'rgb(255, 255, 255)',
-        duration: minDuration + Math.random() * (maxDuration - minDuration),
+        duration,
         ease: 'power2.out',
         onComplete: () => {
           gsap.to(star, {
@@ -67,8 +74,8 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 25, minDuration =
       })
     }
   }, [count, minDuration, maxDuration])
-
-  return <div ref={containerRef} className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" />
+  return null
+  //   return <div ref={containerRef} className="pointer-events-none absolute bottom-0 left-0 -z-10 size-0 border-6" />
 }
 
 export default ShootingStars

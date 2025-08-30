@@ -133,6 +133,6 @@
 }
 
 .shooting-star {
-  @apply absolute h-0.5 w-20 rounded-full;
+  @apply absolute -z-10 h-0.5 w-20 rounded-full;
   background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--star-color));
 }

@@ -58,7 +58,7 @@ export default function PageAnimations() {
         animations.push(tl)
       })
 
-      gsap.to('main', { opacity: 1, duration: 0.6 })
+      gsap.to('main', { opacity: 1, duration: 0.8 })
 
       // GLOSSY SCROLL EFFECT
       const glossyEls = gsap.utils.selector(document)(GLOSSY_ELEMENTS)
