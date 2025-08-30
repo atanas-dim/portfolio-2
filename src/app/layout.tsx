@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import '@/app/globals.css'
 import { twJoin } from 'tailwind-merge'
 import GSAPPlugins from '@/components/GSAPPlugins'
+import { DeviceOrientationProvider } from '@/components/DeviceOrientationContext'
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -80,8 +81,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={twJoin(montserrat.variable, souvenirBold.variable)}>
-        <GSAPPlugins />
-        {children}
+        <DeviceOrientationProvider>
+          <GSAPPlugins />
+          {children}
+        </DeviceOrientationProvider>
       </body>
     </html>
   )
