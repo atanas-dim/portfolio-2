@@ -68,7 +68,7 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 25, minDuration =
     }
   }, [count, minDuration, maxDuration])
 
-  return <div ref={containerRef} className="pointer-events-none absolute inset-0 z-1000 overflow-hidden" />
+  return <div ref={containerRef} className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" />
 }
 
 export default ShootingStars
