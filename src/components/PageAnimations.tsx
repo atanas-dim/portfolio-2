@@ -91,6 +91,23 @@ export default function PageAnimations() {
       // Remove any existing animations
       gsap.getTweensOf('.bg-image').forEach((tween) => tween.kill())
       alert('ENABLE')
+
+      if (
+        typeof DeviceMotionEvent !== 'undefined' &&
+        typeof (DeviceMotionEvent as any).requestPermission === 'function'
+      ) {
+        alert('ENABLE 1 MOTION')
+        ;(DeviceMotionEvent as any).requestPermission().then((response: string) => {
+          if (response === 'granted') {
+            alert('GRANTED MOTION')
+            window.addEventListener('deviceorientation', handleOrientation, true)
+          } else {
+            alert('DENIED MOTION')
+            console.warn('Permission denied for device orientation')
+          }
+        })
+      }
+
       if (
         typeof DeviceOrientationEvent !== 'undefined' &&
         typeof (DeviceOrientationEvent as any).requestPermission === 'function'
