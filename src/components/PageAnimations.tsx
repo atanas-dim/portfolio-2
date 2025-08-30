@@ -1,7 +1,6 @@
 'use client'
 
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useEffect } from 'react'
 
 const STAGGER_ELEMENTS = '.heading,p,.social-link,.card,.tool'
@@ -15,10 +14,9 @@ export default function PageAnimations() {
       const main = gsap.utils.selector(document)('main')
       if (!main) return
 
-      // Kill previous timelines & ScrollTriggers
-      animations.forEach(anim => anim.kill())
+      // Kill previous timelines
+      animations.forEach((anim) => anim.kill())
       animations = []
-      ScrollTrigger.getAll().forEach(st => st.kill())
 
       // REVEAL ANIMATION
       const staggeredEls = gsap.utils.selector(document)(STAGGER_ELEMENTS)
@@ -51,7 +49,7 @@ export default function PageAnimations() {
           duration: 0.3,
           ease: 'power2.out',
         })
-          .to({}, { duration: top < window.innerHeight ? 2 : 1 })
+          .to({}, { duration: top < window.innerHeight ? 4 : 1 })
           .to(child, {
             opacity: 0,
             y: -20,
@@ -80,14 +78,12 @@ export default function PageAnimations() {
         })
         animations.push(tl)
       })
-
-      ScrollTrigger.refresh()
     }
 
     setupAnimations()
 
     const resetAnimations = async () => {
-      await gsap.delayedCall(0.5, () => { }) // wait a tick for layout to stabilize
+      await gsap.delayedCall(0.5, () => {}) // wait a tick for layout to stabilize
       setupAnimations()
     }
 
@@ -95,11 +91,9 @@ export default function PageAnimations() {
 
     return () => {
       window.removeEventListener('orientationchange', resetAnimations)
-      animations.forEach(tl => tl.kill())
-      ScrollTrigger.getAll().forEach(st => st.kill())
+      animations.forEach((tl) => tl.kill())
     }
   }, [])
-
 
   return null
 }

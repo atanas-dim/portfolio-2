@@ -19,8 +19,6 @@ export default function HomePage() {
 
   return (
     <>
-      <PageAnimations />
-
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -99,13 +97,14 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <footer className="relative mt-40 w-full overflow-hidden md:mt-120">
+      <footer className="relative mt-40 w-full overflow-hidden md:mt-120 lg:mt-150 xl:mt-190">
         <div className="mx-auto max-w-5xl px-6">
           <p className="border-t-3 border-t-red-950/10 py-6 text-xs! font-bold! lg:text-sm!">
             {new Date().getFullYear()} | Created with Next.js, TailwindCSS and GSAP
           </p>
         </div>
       </footer>
+      <PageAnimations />
       <Background />
     </>
   )

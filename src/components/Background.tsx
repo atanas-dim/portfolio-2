@@ -9,27 +9,52 @@ const Background: FC = () => {
   const landscapeRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
-    gsap.to(landscapeRef.current, {
-      scale: 1.1,
-      repeat: -1,
-      yoyo: true,
-      duration: 20,
-      ease: 'slow',
-      repeatDelay: 3,
-    })
+    let animations: Array<GSAPTimeline | GSAPTween> = []
 
-    gsap.set(landscapeRef.current, { y: 40 })
+    const setupAnimations = async () => {
+      // Kill previous timelines
+      animations.forEach((anim) => anim.kill())
+      animations = []
 
-    gsap.to(landscapeRef.current, {
-      y: 0,
-      ease: 'slow',
-      scrollTrigger: {
-        trigger: landscapeRef.current,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 2,
-      },
-    })
+      const infiniteZoom = gsap.to(landscapeRef.current, {
+        scale: 1.1,
+        repeat: -1,
+        yoyo: true,
+        duration: 20,
+        ease: 'linear',
+        repeatDelay: 3,
+      })
+      animations.push(infiniteZoom)
+
+      gsap.set(landscapeRef.current, { y: 40 })
+
+      const slideY = gsap.to(landscapeRef.current, {
+        y: 0,
+        ease: 'slow',
+        scrollTrigger: {
+          trigger: landscapeRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 2,
+        },
+      })
+
+      animations.push(slideY)
+    }
+
+    setupAnimations()
+
+    const resetAnimations = async () => {
+      await gsap.delayedCall(0.5, () => {}) // wait a tick for layout to stabilize
+      setupAnimations()
+    }
+
+    window.addEventListener('orientationchange', resetAnimations)
+
+    return () => {
+      window.removeEventListener('orientationchange', resetAnimations)
+      animations.forEach((tl) => tl.kill())
+    }
   }, [])
 
   return (
