@@ -88,31 +88,23 @@ export default function PageAnimations() {
 
   useEffect(() => {
     const enableMotion = () => {
-      // Remove any existing animations
-
-      alert('ENABLE')
-
       if (
         typeof DeviceOrientationEvent !== 'undefined' &&
         typeof (DeviceOrientationEvent as any).requestPermission === 'function'
       ) {
-        alert('ENABLE 1')
         // iOS 13+ requires permission
         ;(DeviceOrientationEvent as any)
           .requestPermission()
           .then((response: string) => {
             if (response === 'granted') {
-              alert('GRANTED')
               gsap.getTweensOf('.bg-image').forEach((tween) => tween.kill())
               window.addEventListener('deviceorientation', handleOrientation, true)
             } else {
-              alert('DENIED')
               console.warn('Permission denied for device orientation')
             }
           })
           .catch(console.error)
       } else {
-        alert('ENABLE 2')
         // Non-iOS mobile or Android
         gsap.getTweensOf('.bg-image').forEach((tween) => tween.kill())
         window.addEventListener('deviceorientation', handleOrientation, true)
@@ -122,9 +114,9 @@ export default function PageAnimations() {
     }
 
     const removeGestureListeners = () => {
-      document.removeEventListener('click', enableMotion)
-      document.removeEventListener('touchstart', enableMotion)
-      document.removeEventListener('keydown', enableMotion)
+      // document.removeEventListener('click', enableMotion)
+      // document.removeEventListener('touchstart', enableMotion)
+      // document.removeEventListener('keydown', enableMotion)
       document.removeEventListener('scroll', enableMotion)
     }
 
@@ -134,9 +126,9 @@ export default function PageAnimations() {
 
     if (isMobile) {
       const gestureOptions = { once: true }
-      document.addEventListener('click', enableMotion, gestureOptions)
-      document.addEventListener('touchstart', enableMotion, gestureOptions)
-      document.addEventListener('keydown', enableMotion, gestureOptions)
+      // document.addEventListener('click', enableMotion, gestureOptions)
+      // document.addEventListener('touchstart', enableMotion, gestureOptions)
+      // document.addEventListener('keydown', enableMotion, gestureOptions)
       document.addEventListener('scroll', enableMotion, gestureOptions)
     }
 
