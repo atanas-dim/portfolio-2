@@ -20,7 +20,7 @@ export const DeviceOrientationProvider: React.FC<ProviderProps> = ({ children })
   useEffect(() => {
     const checkPermission = async () => {
       const isMobile = checkIsMobile()
-      console.log({ isMobile })
+
       if (!isMobile) {
         setOrientationPermissionGranted(false)
         setShow(false)
@@ -63,7 +63,7 @@ export const DeviceOrientationProvider: React.FC<ProviderProps> = ({ children })
     ) {
       try {
         const response = await (DeviceOrientationEvent as any).requestPermission()
-        alert(response)
+
         if (response === 'granted') {
           setOrientationPermissionGranted(true)
         }
