@@ -25,15 +25,18 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 
+  * {
+    overscroll-behavior: none;
+    @apply text-pretty;
+  }
+
   ::selection {
     color: var(--color-red-950);
     background: var(--color-red-300);
   }
 
-  /* TODO Review/refactor classes below. Use @apply everywhere possible or just reg css */
-
   html {
-    @apply w-full;
+    @apply w-full overflow-x-hidden;
   }
 
   body {
@@ -67,11 +70,6 @@
   .font-souvenir {
     @apply tracking-[0.0125em];
   }
-}
-
-* {
-  overscroll-behavior: none;
-  @apply text-pretty;
 }
 
 @utility glossy {
@@ -132,4 +130,9 @@
   .grainy {
     animation: none !important;
   }
+}
+
+.shooting-star {
+  @apply absolute h-0.5 w-20 rounded-full;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--star-color));
 }

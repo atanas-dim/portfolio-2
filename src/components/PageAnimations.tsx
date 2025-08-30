@@ -11,9 +11,6 @@ export default function PageAnimations() {
     let animations: Array<GSAPTimeline | GSAPTween> = []
 
     const setupAnimations = async () => {
-      const main = gsap.utils.selector(document)('main')
-      if (!main) return
-
       // Kill previous timelines
       animations.forEach((anim) => anim.kill())
       animations = []
@@ -61,10 +58,10 @@ export default function PageAnimations() {
         animations.push(tl)
       })
 
-      gsap.to(main, { opacity: 1, duration: 0.6 })
+      gsap.to('main', { opacity: 1, duration: 0.6 })
 
       // GLOSSY SCROLL EFFECT
-      const glossyEls = gsap.utils.selector(main)(GLOSSY_ELEMENTS)
+      const glossyEls = gsap.utils.selector(document)(GLOSSY_ELEMENTS)
       glossyEls.forEach((el) => {
         const tl = gsap.to(el, {
           scrollTrigger: {

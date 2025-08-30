@@ -1,9 +1,14 @@
-import Background from '@/components/Background'
 import Card from '@/components/Card'
 import PageAnimations from '@/components/PageAnimations'
+import planet1Img from '@/assets/images/planet-1.png'
+import planet2Img from '@/assets/images/planet-2.png'
+import marsImg from '@/assets/images/mars-landscape.png'
+
 import { PROJECTS } from '@/resources/projects'
 import { SOCIAL_LINKS } from '@/resources/socialLinks'
 import { TOOLS } from '@/resources/tools'
+import Image from 'next/image'
+import ShootingStars from '@/components/ShootingStars'
 
 export default function HomePage() {
   const jsonLd = {
@@ -31,11 +36,19 @@ export default function HomePage() {
       </div>
 
       <main className="mx-auto flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-10 opacity-0 motion-reduce:animate-none lg:py-16">
-        <section className="flex flex-col gap-2">
+        <section className="relative flex flex-col gap-2">
           <h1 className="heading whitespace-nowrap">Atanas Dimitrov</h1>
           <p className="text-2xl whitespace-nowrap lg:text-3xl">
             Software Developer <span className="text-black">🪄 ⚛️</span>
           </p>
+
+          <Image
+            role="presentation"
+            src={planet1Img}
+            alt=""
+            className="absolute top-10 -right-40 -z-1 size-100 object-contain opacity-60 md:-right-20 lg:-right-10 xl:top-5 xl:-right-35 xl:size-120 2xl:-right-60"
+            quality={100}
+          />
         </section>
         <section className="flex flex-col gap-2">
           <h2 className="heading whitespace-nowrap">Let&apos;s connect</h2>
@@ -65,7 +78,7 @@ export default function HomePage() {
             excited to experiment with new ideas and technologies.
           </p>
         </section>
-        <section className="flex flex-col gap-8">
+        <section className="relative flex flex-col gap-8">
           <h2 className="heading lg:leading-tight">Projects</h2>
           <p>Flip cards to learn more 🔁</p>
           <ul className="xs:grid-cols-2 grid grid-cols-1 gap-8 sm:gap-6 md:grid-cols-3">
@@ -77,6 +90,13 @@ export default function HomePage() {
               )
             })}
           </ul>
+          <Image
+            role="presentation"
+            src={planet2Img}
+            alt=""
+            className="absolute top-10 -left-40 -z-1 size-80 object-contain opacity-60 md:-left-50 lg:-left-60 xl:top-5 xl:-left-70 xl:size-100 2xl:-left-80"
+            quality={100}
+          />
         </section>
         <section className="flex flex-col gap-4">
           <h2 className="heading lg:leading-tight">Tools</h2>
@@ -96,16 +116,22 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+        <Image
+          src={marsImg}
+          alt=""
+          className="absolute bottom-0 left-0 -z-1 max-h-360 w-full max-w-none object-contain"
+          quality={100}
+        />
       </main>
-      <footer className="relative mt-40 w-full overflow-hidden md:mt-120 lg:mt-150 xl:mt-190">
-        <div className="mx-auto max-w-5xl px-6">
+      <footer className="relative mt-40 w-full overflow-hidden md:mt-100 lg:mt-140">
+        <div className="relative mx-auto max-w-5xl px-6">
           <p className="border-t-3 border-t-red-950/10 py-6 text-xs! font-bold! lg:text-sm!">
             {new Date().getFullYear()} | Created with Next.js, TailwindCSS and GSAP
           </p>
         </div>
       </footer>
+      <ShootingStars />
       <PageAnimations />
-      <Background />
     </>
   )
 }
