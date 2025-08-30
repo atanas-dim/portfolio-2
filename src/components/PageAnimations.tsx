@@ -114,10 +114,10 @@ export default function PageAnimations() {
     }
 
     const removeGestureListeners = () => {
-      // document.removeEventListener('click', enableMotion)
+      document.removeEventListener('click', enableMotion)
       // document.removeEventListener('touchstart', enableMotion)
       // document.removeEventListener('keydown', enableMotion)
-      document.removeEventListener('scroll', enableMotion)
+      // document.removeEventListener('scroll', enableMotion)
     }
 
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
@@ -126,10 +126,10 @@ export default function PageAnimations() {
 
     if (isMobile) {
       const gestureOptions = { once: true }
-      // document.addEventListener('click', enableMotion, gestureOptions)
+      document.addEventListener('click', enableMotion, gestureOptions)
       // document.addEventListener('touchstart', enableMotion, gestureOptions)
       // document.addEventListener('keydown', enableMotion, gestureOptions)
-      document.addEventListener('scroll', enableMotion, gestureOptions)
+      // document.addEventListener('scroll', enableMotion, gestureOptions)
     }
 
     return () => {
