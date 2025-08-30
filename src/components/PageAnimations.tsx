@@ -80,7 +80,7 @@ export default function PageAnimations() {
     setupAnimations()
 
     const resetAnimations = async () => {
-      await gsap.delayedCall(0.5, () => {}) // wait a tick for layout to stabilize
+      await gsap.delayedCall(1.5, () => {}) // wait a tick for layout to stabilize
       setupAnimations()
     }
 
