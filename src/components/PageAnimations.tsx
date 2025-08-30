@@ -17,49 +17,7 @@ export default function PageAnimations() {
       animations = []
       ScrollTrigger.getAll().forEach((st) => st.kill())
 
-      // REVEAL ANIMATION
-      const staggeredEls = gsap.utils.selector(document)(STAGGER_ELEMENTS)
-
-      staggeredEls.forEach((child, index) => {
-        const isCard = Object.values(child.classList).includes('card')
-        const top = child.getBoundingClientRect().top
-        const isLast = index === staggeredEls.length - 1
-
-        gsap.set(child, {
-          opacity: 0,
-          y: 20,
-          scale: isCard ? 0.95 : 1,
-        })
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: child,
-            start: 'top bottom',
-            end: isLast ? 'top 50%' : 'bottom top',
-            fastScrollEnd: true,
-            scrub: 2,
-          },
-        })
-
-        tl.to(child, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.3,
-          ease: 'power2.out',
-        })
-          .to({}, { duration: top < window.innerHeight ? 4 : 1 })
-          .to(child, {
-            opacity: 0,
-            y: -20,
-            scale: isCard ? 0.95 : 1,
-            duration: 0.3,
-            ease: 'power2.out',
-          })
-
-        animations.push(tl)
-      })
-
+      // REVEAL MAIN
       gsap.to('main', { opacity: 1, duration: 0.8 })
 
       // GLOSSY SCROLL EFFECT
@@ -77,6 +35,18 @@ export default function PageAnimations() {
         })
         animations.push(tl)
       })
+
+      gsap.utils
+        .selector(document.body)('.bg-image')
+        .forEach((img) => {
+          const tl = gsap.to(img, {
+            y: gsap.utils.random(10, 30),
+            yoyo: true,
+            repeat: -1,
+            duration: 8,
+          })
+          animations.push(tl)
+        })
     }
 
     setupAnimations()

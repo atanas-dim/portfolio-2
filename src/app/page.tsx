@@ -46,7 +46,7 @@ export default function HomePage() {
             role="presentation"
             src={planet1Img}
             alt=""
-            className="absolute top-10 -right-40 -z-1 size-100 object-contain opacity-60 md:-right-20 lg:-right-10 xl:top-5 xl:-right-35 xl:size-120 2xl:-right-60"
+            className="bg-image absolute top-10 -right-40 -z-1 size-100 object-contain opacity-60 md:-right-20 lg:-right-10 xl:top-5 xl:-right-35 xl:size-120 2xl:-right-60"
             quality={100}
           />
         </section>
@@ -94,7 +94,7 @@ export default function HomePage() {
             role="presentation"
             src={planet2Img}
             alt=""
-            className="absolute top-10 -left-40 -z-1 size-80 object-contain opacity-60 md:-left-50 lg:-left-60 xl:top-5 xl:-left-70 xl:size-100 2xl:-left-80"
+            className="bg-image absolute top-10 -left-40 -z-1 size-80 object-contain opacity-60 md:-left-50 lg:-left-60 xl:top-5 xl:-left-70 xl:size-100 2xl:-left-80"
             quality={100}
           />
         </section>
@@ -116,12 +116,16 @@ export default function HomePage() {
             ))}
           </div>
         </section>
-        <Image
-          src={marsImg}
-          alt=""
-          className="absolute bottom-0 left-0 -z-1 max-h-360 w-full max-w-none object-contain"
-          quality={100}
-        />
+
+        <div role="presentation" className="absolute bottom-0 left-0 -z-1 max-h-360 w-full overflow-hidden">
+          <Image
+            role="presentation"
+            src={marsImg}
+            alt=""
+            className="bg-image w-full max-w-none object-contain"
+            quality={100}
+          />
+        </div>
       </main>
       <footer className="relative mt-40 w-full overflow-hidden md:mt-100 lg:mt-140">
         <div className="relative mx-auto max-w-5xl px-6">
