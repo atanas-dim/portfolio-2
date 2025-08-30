@@ -125,9 +125,9 @@ export default function HomePage() {
       </main>
       <footer className="relative mt-40 w-full overflow-hidden md:mt-100 lg:mt-140">
         <div className="relative mx-auto max-w-5xl px-6">
-          <p className="border-t-3 border-t-red-950/10 py-6 text-xs! font-bold! lg:text-sm!">
+          <span className="block border-t-3 border-t-red-950/10 py-6 text-xs! font-bold! lg:text-sm!">
             {new Date().getFullYear()} | Created with Next.js, TailwindCSS and GSAP
-          </p>
+          </span>
         </div>
       </footer>
       <ShootingStars />

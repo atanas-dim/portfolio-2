@@ -1,6 +1,7 @@
 'use client'
 
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useEffect } from 'react'
 
 const STAGGER_ELEMENTS = '.heading,p,.social-link,.card,.tool'
@@ -14,6 +15,7 @@ export default function PageAnimations() {
       // Kill previous timelines
       animations.forEach((anim) => anim.kill())
       animations = []
+      ScrollTrigger.getAll().forEach((st) => st.kill())
 
       // REVEAL ANIMATION
       const staggeredEls = gsap.utils.selector(document)(STAGGER_ELEMENTS)
