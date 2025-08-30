@@ -89,24 +89,8 @@ export default function PageAnimations() {
   useEffect(() => {
     const enableMotion = () => {
       // Remove any existing animations
-      gsap.getTweensOf('.bg-image').forEach((tween) => tween.kill())
-      alert('ENABLE')
 
-      if (
-        typeof DeviceMotionEvent !== 'undefined' &&
-        typeof (DeviceMotionEvent as any).requestPermission === 'function'
-      ) {
-        alert('ENABLE 1 MOTION')
-        ;(DeviceMotionEvent as any).requestPermission().then((response: string) => {
-          if (response === 'granted') {
-            alert('GRANTED MOTION')
-            window.addEventListener('deviceorientation', handleOrientation, true)
-          } else {
-            alert('DENIED MOTION')
-            console.warn('Permission denied for device orientation')
-          }
-        })
-      }
+      alert('ENABLE')
 
       if (
         typeof DeviceOrientationEvent !== 'undefined' &&
@@ -119,6 +103,7 @@ export default function PageAnimations() {
           .then((response: string) => {
             if (response === 'granted') {
               alert('GRANTED')
+              gsap.getTweensOf('.bg-image').forEach((tween) => tween.kill())
               window.addEventListener('deviceorientation', handleOrientation, true)
             } else {
               alert('DENIED')
@@ -129,6 +114,7 @@ export default function PageAnimations() {
       } else {
         alert('ENABLE 2')
         // Non-iOS mobile or Android
+        gsap.getTweensOf('.bg-image').forEach((tween) => tween.kill())
         window.addEventListener('deviceorientation', handleOrientation, true)
       }
 
@@ -147,7 +133,6 @@ export default function PageAnimations() {
     const isMobile = isIOS || isAndroid
 
     if (isMobile) {
-      alert('MOBILE')
       const gestureOptions = { once: true }
       document.addEventListener('click', enableMotion, gestureOptions)
       document.addEventListener('touchstart', enableMotion, gestureOptions)
