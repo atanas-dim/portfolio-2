@@ -9,6 +9,7 @@ const GLOSSY_ELEMENTS = 'h1,h2,h3'
 export default function PageAnimations() {
   const { orientationPermissionGranted } = useDeviceOrientation()
   const neutralBetaRef = useRef<number | null>(null)
+  const neutralGammaRef = useRef<number | null>(null)
 
   useEffect(() => {
     // REVEAL MAIN
@@ -43,38 +44,47 @@ export default function PageAnimations() {
       })
   }, [])
 
-  const handleOrientation = useCallback((event: DeviceOrientationEvent) => {
+  const setNeutralMotionValues = useCallback((beta: number, gamma: number) => {
+    // capture user's natural hold angle once
+    if (neutralBetaRef.current === null) {
+      neutralBetaRef.current = beta
+    }
+    if (neutralGammaRef.current === null) {
+      neutralGammaRef.current = gamma
+    }
+  }, [])
+
+  const resetNeutralMotionValues = useCallback(() => {
+    neutralBetaRef.current = null
+    neutralGammaRef.current = null
+  }, [])
+
+  const tiltBgImages = useCallback((beta: number, gamma: number, isPortrait: boolean) => {
     const images = gsap.utils.selector(document.body)('.bg-image')
-    const cards = gsap.utils.selector(document.body)('.card')
 
-    const beta = event.beta ?? 0 // front-back tilt
-    const gamma = event.gamma ?? 0 // left-right tilt
-
-    // --- translation for images ---
     const xTiltImages = Math.max(-30, Math.min(30, gamma))
     const yTiltImages = Math.max(-30, Math.min(30, beta))
     const maxMove = 20
-    const x = -(xTiltImages / 30) * maxMove
-    const y = -(yTiltImages / 30) * maxMove
+    const xTranslate = -(xTiltImages / 30) * maxMove
+    const yTranslate = -(yTiltImages / 30) * maxMove
 
     gsap.to(images, {
-      x,
-      y,
+      x: isPortrait ? xTranslate : yTranslate,
+      y: isPortrait ? yTranslate : -xTranslate,
       ease: 'power2.out',
       duration: 0.2,
     })
+  }, [])
 
-    // --- rotation for cards: use a neutral offset for beta so it doesn't sit on the clamp ---
-    if (neutralBetaRef.current === null) {
-      neutralBetaRef.current = beta // capture user's natural hold angle once
-    }
-    const betaRel = beta - neutralBetaRef.current // now 0 ≈ user's normal posture
-    const xTiltCards = xTiltImages
-    const yTiltCards = Math.max(-30, Math.min(30, betaRel)) // clamp AFTER offset
+  const tiltCards = useCallback((beta: number, gamma: number, isPortrait: boolean) => {
+    const cards = gsap.utils.selector(document.body)('.card')
+
+    const xTiltCards = Math.max(-30, Math.min(30, gamma)) * 0.5
+    const yTiltCards = Math.max(-30, Math.min(30, beta)) * 0.5 // clamp AFTER offset
 
     gsap.to(cards, {
-      rotateX: yTiltCards * 0.5,
-      rotateY: xTiltCards * 0.5,
+      rotateX: isPortrait ? yTiltCards : xTiltCards,
+      rotateY: isPortrait ? xTiltCards : yTiltCards,
       force3D: true,
       transformOrigin: '50% 50%',
       ease: 'power2.out',
@@ -82,16 +92,36 @@ export default function PageAnimations() {
     })
   }, [])
 
+  const handleOrientation = useCallback(
+    (event: DeviceOrientationEvent) => {
+      const beta = event.beta ?? 0 // front-back tilt
+      const gamma = event.gamma ?? 0 // left-right tilt
+      const isPortrait = window.matchMedia('(orientation: portrait)').matches
+
+      // rotation for cards: use a neutral offset for beta and gamma so it doesn't sit on the clamp
+      setNeutralMotionValues(beta, gamma)
+
+      const betaRel = beta - (neutralBetaRef.current || 0) // now 0 ≈ user's normal posture
+      const gammaRel = gamma - (neutralGammaRef.current || 0) // now 0 ≈ user's normal posture
+
+      tiltBgImages(betaRel, gammaRel, isPortrait)
+      tiltCards(betaRel, gammaRel, isPortrait)
+    },
+    [setNeutralMotionValues, tiltBgImages, tiltCards],
+  )
+
   useEffect(() => {
     if (!orientationPermissionGranted) return animateFloating()
 
     gsap.getTweensOf('.bg-image').forEach((tween) => tween.kill())
     window.addEventListener('deviceorientation', handleOrientation, true)
+    window.addEventListener('orientationchange', resetNeutralMotionValues, true)
 
     return () => {
       window.removeEventListener('deviceorientation', handleOrientation, true)
+      window.removeEventListener('orientationchange', resetNeutralMotionValues, true)
     }
-  }, [handleOrientation, orientationPermissionGranted, animateFloating])
+  }, [handleOrientation, orientationPermissionGranted, animateFloating, resetNeutralMotionValues])
 
   return null
 }

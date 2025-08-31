@@ -5,6 +5,12 @@ import gsap from 'gsap'
 import Image from 'next/image'
 import { FC, useEffect, useRef } from 'react'
 
+const getRandomRotateX = () => gsap.utils.random(3, 8)
+const getRandomRotateYFront = () => gsap.utils.random(-5, 5)
+const getRandomRotateYBack = () => gsap.utils.random(175, 185)
+const getRandomRotateZ = () => gsap.utils.random(-1.5, 1.5)
+const getRandomTranslateZ = () => gsap.utils.random(100, 120)
+
 type CardProps = {
   project: ProjectDef
 }
@@ -14,13 +20,9 @@ const Card: FC<CardProps> = ({ project }) => {
   const frontSideRef = useRef<HTMLDivElement>(null)
   const backSideRef = useRef<HTMLDivElement>(null)
 
-  const getRandomRotateX = () => Math.floor(Math.random() * 6) + 3 // 3 to 8
-  const getRandomRotateYFront = () => Math.floor(Math.random() * (5 - -5 + 1)) + -5 // -5 to 5 inclusive
-  const getRandomRotateYBack = () => Math.floor(Math.random() * (185 - 175 + 1)) + 175 // 175 to 185 inclusive
-  const getRandomRotateZ = () => Math.random() * 3 - 1.5 // -1.5 to 1.5
-  const getRandomTranslateZ = () => Math.floor(Math.random() * 70) + 30
+  const animateHover = () => {
+    if (containerSideRef.current?.parentElement) containerSideRef.current.parentElement.style.zIndex = '10'
 
-  const animateTilt = () => {
     const isFrontSide = +gsap.getProperty(frontSideRef.current, 'rotateY') < 90
 
     gsap.to([frontSideRef.current, backSideRef.current], {
@@ -45,7 +47,10 @@ const Card: FC<CardProps> = ({ project }) => {
     })
   }
 
-  const resetRotation = () => {
+  const resetRotation = (shouldResetZIndex: boolean = false) => {
+    if (shouldResetZIndex && containerSideRef.current?.parentElement)
+      containerSideRef.current.parentElement.style.zIndex = '0'
+
     gsap.to([frontSideRef.current, backSideRef.current], {
       rotateX: 0,
       rotateY: 0,
@@ -59,7 +64,7 @@ const Card: FC<CardProps> = ({ project }) => {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (containerSideRef.current && !containerSideRef.current.contains(event.target as Node)) {
-        resetRotation()
+        resetRotation(true)
       }
     }
 
@@ -74,8 +79,8 @@ const Card: FC<CardProps> = ({ project }) => {
       ref={containerSideRef}
       style={{ perspective: 2000, transformStyle: 'preserve-3d' }}
       className="card @container relative size-full cursor-pointer *:select-none"
-      onPointerEnter={animateTilt}
-      onPointerLeave={resetRotation}
+      onPointerEnter={animateHover}
+      onPointerLeave={() => resetRotation()}
       onClick={animateFlip}>
       <div
         ref={backSideRef}
