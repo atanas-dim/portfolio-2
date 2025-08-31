@@ -79,7 +79,7 @@ const Card: FC<CardProps> = ({ project }) => {
       onClick={animateFlip}>
       <div
         ref={backSideRef}
-        className="absolute inset-0 -translate-z-[120px] rounded-3xl border-2 border-red-950 bg-red-950 px-4 py-6 text-red-200">
+        className="absolute inset-0 rounded-3xl border-2 border-red-950 bg-red-950 px-4 py-6 text-red-200">
         <div className="flex -scale-x-100 flex-col gap-4">
           <span className="font-souvenir text-xl @2xs:text-2xl @xs:text-3xl">{project.title}</span>
           <p className="text-sm @2xs:text-base @xs:text-xl">{project.description}</p>
