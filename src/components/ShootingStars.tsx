@@ -10,7 +10,7 @@ type ShootingStarsProps = {
 
 const MAX_STAR_WIDTH = 80
 
-const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 15, minDuration = 7, maxDuration = 18 }) => {
+const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 10, minDuration = 7, maxDuration = 18 }) => {
   useEffect(() => {
     const main = document.getElementsByTagName('main')[0]
     if (!main) return
@@ -74,7 +74,7 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 15, minDuration =
               onComplete: () => animateStar(star), // loop forever
             })
           },
-          delay: Math.random() * 4,
+          delay: Math.random() * 6,
         })
       }
 

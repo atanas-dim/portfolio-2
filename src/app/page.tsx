@@ -2,6 +2,8 @@ import Card from '@/components/Card'
 import PageAnimations from '@/components/PageAnimations'
 import planet1Img from '@/assets/images/planet-1.png'
 import planet2Img from '@/assets/images/planet-2.png'
+import planet3Img from '@/assets/images/planet-3.png'
+
 import marsImg from '@/assets/images/mars-landscape.png'
 
 import { PROJECTS } from '@/resources/projects'
@@ -46,7 +48,7 @@ export default function HomePage() {
             role="presentation"
             src={planet1Img}
             alt=""
-            className="bg-image absolute top-10 -right-40 -z-1 size-100 object-contain opacity-60 md:-right-20 lg:-right-10 xl:top-5 xl:-right-35 xl:size-120 2xl:-right-60"
+            className="bg-image absolute top-10 -right-40 -z-1 size-100 object-contain md:-right-20 lg:-right-10 xl:top-5 xl:-right-35 xl:size-120 2xl:-right-60"
             quality={100}
           />
         </section>
@@ -94,11 +96,11 @@ export default function HomePage() {
             role="presentation"
             src={planet2Img}
             alt=""
-            className="bg-image absolute top-10 -left-40 -z-1 size-80 object-contain opacity-60 md:-left-50 lg:-left-60 xl:top-5 xl:-left-70 xl:size-100 2xl:-left-80"
+            className="bg-image absolute top-10 -left-40 -z-1 size-80 object-contain md:-left-50 lg:-left-60 xl:top-5 xl:-left-70 xl:size-100 2xl:-left-80"
             quality={100}
           />
         </section>
-        <section className="flex flex-col gap-4">
+        <section className="relative flex flex-col gap-4">
           <h2 className="heading lg:leading-tight">Tools</h2>
           <p className="mb-6">I use the following technologies to create my projects:</p>
           <div className="w-fit columns-1 gap-y-4 sm:columns-2 lg:grid lg:columns-4 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-8 lg:[column-fill:balance]">
@@ -115,6 +117,13 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <Image
+            role="presentation"
+            src={planet3Img}
+            alt=""
+            className="bg-image absolute top-50 -right-40 -z-1 size-90 object-contain sm:-top-70 md:-right-50 lg:-right-60 xl:-top-100 xl:-right-70 xl:size-120 2xl:-right-80"
+            quality={100}
+          />
         </section>
 
         <div
@@ -124,7 +133,7 @@ export default function HomePage() {
             role="presentation"
             src={marsImg}
             alt=""
-            className="bg-image h-full w-full max-w-[1920px] scale-112 object-contain xl:scale-100"
+            className="bg-image h-full w-full max-w-[1920px] scale-115 object-contain xl:scale-100"
             quality={100}
           />
         </div>
