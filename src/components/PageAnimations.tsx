@@ -83,7 +83,7 @@ export default function PageAnimations() {
     const yTiltCards = Math.max(-30, Math.min(30, beta)) * 0.5 // clamp AFTER offset
 
     gsap.to(cards, {
-      rotateX: isPortrait ? yTiltCards : xTiltCards,
+      rotateX: isPortrait ? -yTiltCards : xTiltCards,
       rotateY: isPortrait ? xTiltCards : yTiltCards,
       force3D: true,
       transformOrigin: '50% 50%',
