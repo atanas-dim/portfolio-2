@@ -135,6 +135,7 @@ export default function HomePage() {
             alt=""
             className="bg-image h-full w-full max-w-[1920px] scale-115 object-contain xl:scale-100"
             quality={100}
+            priority
           />
         </div>
       </main>

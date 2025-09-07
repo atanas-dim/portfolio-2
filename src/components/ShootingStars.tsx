@@ -23,6 +23,7 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 10, minDuration =
       for (let i = 0; i < count; i++) {
         const star = document.createElement('div')
         star.classList.add('shooting-star')
+        star.role = 'presentation'
         main.appendChild(star)
         stars.push(star)
       }
