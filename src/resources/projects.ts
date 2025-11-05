@@ -32,9 +32,9 @@ export const PROJECTS: ProjectDef[] = [
   {
     image: workoutDirectoryImg,
     title: 'Workout Directory',
-    technologies: 'PWA, TypeScript, Next.js, Supabase, MUI Joy',
+    technologies: 'PWA, TypeScript, Next.js, Supabase, TailwindCSS',
     description:
-      'A workout builder and logger where you can track weights, create exercises, group them into workouts and routines, and browse a library of exercises with embedded YouTube videos. Built as a PWA for home screen access and fullscreen view.',
+      'A workout builder and logger where you can track weights, create exercises, group them into workouts and routines, and browse embedded YouTube videos. Built as a PWA for home screen access and fullscreen view.',
     links: [{ label: 'Live', href: 'https://workoutdirectory.com/' }],
   },
   {
