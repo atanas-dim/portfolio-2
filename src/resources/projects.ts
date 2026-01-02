@@ -44,7 +44,7 @@ export const PROJECTS: ProjectDef[] = [
     description:
       'A 3D scene of Earth and the Moon orbiting in space, built with React Three Fiber and Drei. Demonstrates the use of emissive and alpha maps on spherical textures, lighting, and basic orbital animation in a lightweight interactive environment.',
     links: [
-      { label: 'Gist', href: 'https://gist.github.com/atanas-dim/92177b10c2286ebfd865e1743c40354d' },
+      { label: 'Code', href: 'https://github.com/atanas-dim/solar-system-3d' },
       { label: 'Live', href: 'https://earth-model-3d.vercel.app/' },
     ],
   },
