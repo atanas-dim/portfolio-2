@@ -7,6 +7,7 @@ import tiledImageLoaderImg from '@/assets/images/tiled-image-loader.jpg'
 import calendarImg from '@/assets/images/react-grid-calendar.jpg'
 import nextLocalisationImg from '@/assets/images/next-localisation.jpg'
 import workoutDirectoryImg from '@/assets/images/workout-directory.jpg'
+import zeuxieImg from '@/assets/images/zeuxie.jpg'
 
 export type ProjectDef = {
   videoSrc?: string
@@ -19,6 +20,22 @@ export type ProjectDef = {
 
 export const PROJECTS: ProjectDef[] = [
   {
+    image: zeuxieImg,
+    title: 'Zeuxie File Converter',
+    technologies: 'TypeScript, Next.js, TailwindCSS, AWS, FFmpeg, Supabase',
+    description:
+      'A free online file converter for images, videos, and audio formats. Supports PNG, JPG, WEBP, MP4, MOV, WebM, and more. Fast, secure, cloud-powered conversion with no sign-up required.',
+    links: [{ label: 'Live', href: 'https://zeuxie.com/' }],
+  },
+  {
+    image: workoutDirectoryImg,
+    title: 'Workout Directory',
+    technologies: 'PWA, TypeScript, Next.js, Supabase, TailwindCSS',
+    description:
+      'A workout builder and logger where you can track weights, create exercises, group them into workouts and routines, and browse embedded YouTube videos. Built as a PWA for home screen access and fullscreen view.',
+    links: [{ label: 'Live', href: 'https://workoutdirectory.com/' }],
+  },
+  {
     image: nextLocalisationImg,
     title: 'Next Localisation',
     technologies: 'TypeScript, Next.js, html-react-parser',
@@ -28,14 +45,6 @@ export const PROJECTS: ProjectDef[] = [
       { label: 'Code', href: 'https://github.com/atanas-dim/next-localization' },
       { label: 'Live', href: 'https://next-localization-phi.vercel.app' },
     ],
-  },
-  {
-    image: workoutDirectoryImg,
-    title: 'Workout Directory',
-    technologies: 'PWA, TypeScript, Next.js, Supabase, TailwindCSS',
-    description:
-      'A workout builder and logger where you can track weights, create exercises, group them into workouts and routines, and browse embedded YouTube videos. Built as a PWA for home screen access and fullscreen view.',
-    links: [{ label: 'Live', href: 'https://workoutdirectory.com/' }],
   },
   {
     image: earthImg,

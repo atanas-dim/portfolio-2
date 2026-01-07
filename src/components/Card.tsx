@@ -111,7 +111,7 @@ const Card: FC<CardProps> = ({ project }) => {
           </div>
           <div className="flex h-full flex-col p-2">
             <h3 className="mb-1 @2xs:text-2xl">{project.title}</h3>
-            <span className="mb-3 h-12 text-sm @2xs:text-base">{project.technologies}</span>
+            <span className="mb-3 h-12 min-h-fit text-sm @2xs:text-base">{project.technologies}</span>
             <div className="mt-auto flex gap-2">
               {project.links.map((link, index) => {
                 return (
