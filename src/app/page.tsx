@@ -17,11 +17,11 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Atanas Dimitrov',
-    jobTitle: 'Software Developer',
+    jobTitle: 'Senior Frontend Engineer - React / TypeScript',
     url: 'https://adimitrov.com',
     sameAs: ['https://github.com/atanas-dim', 'https://www.linkedin.com/in/atanas-dim/'],
     image: 'https://www.adimitrov.com/opengraph-image',
-    description: 'React developer passionate about creating beautiful and functional web applications.',
+    description: 'React engineer passionate about creating beautiful and functional web applications.',
   }
 
   return (
@@ -39,10 +39,11 @@ export default function HomePage() {
 
       <main className="mx-auto flex size-full min-h-fit max-w-5xl flex-col gap-28 px-6 py-10 opacity-0 motion-reduce:animate-none lg:py-16">
         <section className="relative flex flex-col gap-2">
-          <h1 className="heading whitespace-nowrap">Atanas Dimitrov</h1>
-          <p className="text-2xl whitespace-nowrap lg:text-3xl">
-            Software Developer <span className="text-black">🪄 ⚛️</span>
-          </p>
+          <h1 className="heading">Atanas Dimitrov</h1>
+          <p className="text-2xl lg:text-3xl">Senior Frontend Engineer </p>
+          <span className="text-xl lg:text-2xl">
+            React / TypeScript <span className="text-black">🪄 ⚛️</span>
+          </span>
 
           <Image
             role="presentation"
@@ -76,8 +77,8 @@ export default function HomePage() {
         <section className="flex flex-col gap-4">
           <h2 className="heading lg:leading-tight">About me</h2>
           <p className="max-w-180">
-            I’m a React developer with a passion for creating beautiful and functional web applications. I’m always
-            excited to experiment with new ideas and technologies.
+            I&apos;m a senior React engineer focused on building performant, well-architected web applications. I enjoy
+            taking ownership of frontend architecture and delivering high-quality features from design to production.
           </p>
         </section>
         <section className="relative flex flex-col gap-8">
