@@ -101,7 +101,7 @@
 
   background-clip: text;
   background-position: 0 0;
-  background-size: 15vmax 15vmax;
+  background-size: 20vmax 20vmax;
   background-repeat: repeat-x;
 }
 
@@ -135,9 +135,4 @@
   .grainy {
     animation: none !important;
   }
-}
-
-.shooting-star {
-  @apply absolute -z-10 h-0.5 w-20 rounded-full;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--star-color));
 }
