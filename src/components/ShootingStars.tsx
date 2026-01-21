@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useEffect } from 'react'
+import { useRef, useEffect, type FC } from 'react'
 
 type ShootingStarsProps = {
   count?: number
@@ -116,7 +116,7 @@ const createStar = (now: number, w: number, h: number, minDuration: number, maxD
   }
 }
 
-const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 15, minDuration = 7, maxDuration = 18 }) => {
+const ShootingStars: FC<ShootingStarsProps> = ({ count = 10, minDuration = 7, maxDuration = 18 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>()
   const starsRef = useRef<Star[]>([])
@@ -213,19 +213,7 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({ count = 15, minDuration =
   }, [count, minDuration, maxDuration])
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        width: '100vw',
-        height: '100%',
-        pointerEvents: 'none',
-        zIndex: -5,
-      }}
-      aria-hidden="true"
-    />
+    <canvas ref={canvasRef} className="w-vw pointer-events-none absolute top-0 left-0 -z-5 h-full" aria-hidden="true" />
   )
 }
 
