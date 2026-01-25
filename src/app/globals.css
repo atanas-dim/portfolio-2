@@ -25,17 +25,13 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 
-  * {
-    overscroll-behavior: none;
-    @apply text-pretty;
-  }
-
   ::selection {
     color: var(--color-red-950);
     background: var(--color-red-300);
   }
 
   html {
+    overscroll-behavior: none;
     @apply w-full overflow-x-hidden;
   }
 
