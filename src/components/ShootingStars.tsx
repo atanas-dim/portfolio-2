@@ -1,5 +1,9 @@
 'use client'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { useRef, useEffect, type FC } from 'react'
+
+gsap.registerPlugin(ScrollTrigger)
 
 type ShootingStarsProps = {
   count?: number
@@ -13,8 +17,8 @@ const FRAME_INTERVAL = 1000 / FPS
 const MIN_STAR_LENGTH = 80
 const MAX_STAR_LENGTH = 160
 const LINE_WIDTH = 4
-const COLOR_START = [255, 255, 255] as const // white
-const COLOR_END = [255, 100, 103] as const // pink/red
+const COLOR_START = [255, 100, 103] as const // red
+const COLOR_END = [255, 255, 255] as const // white
 
 type Star = {
   x: number
@@ -73,20 +77,6 @@ const drawStar = (
   ctx.restore()
 }
 
-const getCanvasSize = () => {
-  const w = window.innerWidth
-  // Use the full page height, not just the viewport
-  const h = Math.max(
-    document.body.scrollHeight,
-    document.documentElement.scrollHeight,
-    document.body.offsetHeight,
-    document.documentElement.offsetHeight,
-    document.body.clientHeight,
-    document.documentElement.clientHeight,
-  )
-  return { w, h }
-}
-
 const createStar = (now: number, w: number, h: number, minDuration: number, maxDuration: number): Star => {
   const angle = Math.random() * 2 * Math.PI
   const maxDistance = Math.min(w, h) * 0.5
@@ -98,7 +88,7 @@ const createStar = (now: number, w: number, h: number, minDuration: number, maxD
   const endY = Math.min(Math.max(startY + dy, 0), h)
   const movementDistance = Math.sqrt(dx * dx + dy * dy)
   const duration = lerp(minDuration, maxDuration, movementDistance / maxDistance) * 1000
-  const delay = Math.random() * 4000
+  const delay = Math.random() * 6000
   const length = lerp(MIN_STAR_LENGTH, MAX_STAR_LENGTH, Math.random())
 
   return {
@@ -116,10 +106,16 @@ const createStar = (now: number, w: number, h: number, minDuration: number, maxD
   }
 }
 
-const ShootingStars: FC<ShootingStarsProps> = ({ count = 10, minDuration = 7, maxDuration = 18 }) => {
+const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, maxDuration = 18 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>()
   const starsRef = useRef<Star[]>([])
+
+  const getCanvasSize = () => {
+    const w = canvasRef.current?.clientWidth || window.innerWidth
+    const h = canvasRef.current?.clientHeight || window.innerHeight
+    return { w, h }
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -212,8 +208,25 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 10, minDuration = 7, ma
     }
   }, [count, minDuration, maxDuration])
 
+  useEffect(() => {
+    // here use gsap scrollTrigger to move the canvas up/down with scroll. import and register scroll plugin if needed
+    //
+    gsap.to(canvasRef.current, {
+      yPercent: -30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+      },
+    })
+  }, [])
+
   return (
-    <canvas ref={canvasRef} className="w-vw pointer-events-none absolute top-0 left-0 -z-5 h-full" aria-hidden="true" />
+    <div className="fixed top-0 left-0 -z-5 h-svh w-svw overflow-hidden">
+      <canvas ref={canvasRef} className="pointer-events-none h-16/10 w-full" aria-hidden="true" />
+    </div>
   )
 }
 
