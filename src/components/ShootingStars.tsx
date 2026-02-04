@@ -8,7 +8,7 @@ type ShootingStarsProps = {
   maxDuration?: number
 }
 
-const FPS = 25
+const FPS = 30
 const FRAME_INTERVAL = 1000 / FPS
 
 const MIN_STAR_LENGTH = 80
