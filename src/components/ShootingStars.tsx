@@ -1,9 +1,6 @@
 'use client'
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { useRef, useEffect, type FC } from 'react'
-
-gsap.registerPlugin(ScrollTrigger)
 
 type ShootingStarsProps = {
   count?: number
@@ -19,6 +16,8 @@ const MAX_STAR_LENGTH = 160
 const LINE_WIDTH = 4
 const COLOR_START = [255, 100, 103] as const // red
 const COLOR_END = [255, 255, 255] as const // white
+
+const MAX_SCROLL_OFFSET = -400 // px
 
 type Star = {
   x: number
@@ -36,16 +35,24 @@ type Star = {
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
-const drawStar = (
-  ctx: CanvasRenderingContext2D,
-  star: Star,
-  moveT: number,
-  colorT: number,
-  globalAlpha: number = 1,
-) => {
+const drawStar = ({
+  ctx,
+  star,
+  moveT,
+  colorT,
+  globalAlpha = 1,
+  scrollOffset = 0,
+}: {
+  ctx: CanvasRenderingContext2D
+  star: Star
+  moveT: number
+  colorT: number
+  globalAlpha?: number
+  scrollOffset?: number
+}) => {
   // Calculate position along movement path
   const x1 = star.x + star.dx * moveT
-  const y1 = star.y + star.dy * moveT
+  const y1 = star.y + star.dy * moveT + scrollOffset
 
   // Calculate line endpoints (along movement direction)
   const moveDist = Math.sqrt(star.dx * star.dx + star.dy * star.dy)
@@ -86,8 +93,8 @@ const createStar = (now: number, w: number, h: number, minDuration: number, maxD
   const startY = Math.random() * h
   const endX = Math.min(Math.max(startX + dx, 0), w)
   const endY = Math.min(Math.max(startY + dy, 0), h)
-  const movementDistance = Math.sqrt(dx * dx + dy * dy)
-  const duration = lerp(minDuration, maxDuration, movementDistance / maxDistance) * 1000
+  // const movementDistance = Math.sqrt(dx * dx + dy * dy)
+  const duration = lerp(minDuration, maxDuration, Math.random()) * 1000
   const delay = Math.random() * 6000
   const length = lerp(MIN_STAR_LENGTH, MAX_STAR_LENGTH, Math.random())
 
@@ -110,6 +117,20 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>()
   const starsRef = useRef<Star[]>([])
+  const scrollProgressRef = useRef({ value: 0 })
+
+  useEffect(() => {
+    gsap.to(scrollProgressRef.current, {
+      value: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.5,
+      },
+    })
+  }, [])
 
   const getCanvasSize = () => {
     const w = canvasRef.current?.clientWidth || window.innerWidth
@@ -150,6 +171,8 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
 
       ctx.clearRect(0, 0, w, h)
 
+      const scrollOffset = scrollProgressRef.current.value * MAX_SCROLL_OFFSET
+
       for (const star of starsRef.current) {
         const elapsed = t - star.startTime
 
@@ -164,7 +187,7 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
         if (star.phase === 'fading-in') {
           const fadeInT = Math.min((t - star.startTime) / 400, 1)
           star.opacity = fadeInT
-          drawStar(ctx, star, 0, 0, star.opacity) // moveT=0 (start), colorT=0 (white), fade in
+          drawStar({ ctx, star, moveT: 0, colorT: 0, globalAlpha: star.opacity, scrollOffset }) // moveT=0 (start), colorT=0 (white), fade in
           if (fadeInT >= 1) {
             star.phase = 'moving'
             star.startTime = t
@@ -175,7 +198,7 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
         if (star.phase === 'moving') {
           const moveT = Math.min((t - star.startTime) / star.duration, 1)
           star.opacity = moveT
-          drawStar(ctx, star, moveT, moveT) // moveT for position and color interpolation
+          drawStar({ ctx, star, moveT, colorT: moveT, globalAlpha: 1, scrollOffset }) // moveT for position and color interpolation
           if (moveT >= 1) {
             star.phase = 'fading-out'
             star.startTime = t
@@ -183,7 +206,7 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
         } else if (star.phase === 'fading-out') {
           const fadeT = Math.min((t - star.startTime) / 400, 1)
           star.opacity = 1 - fadeT
-          drawStar(ctx, star, 1, 1, star.opacity) // moveT=1 (end), colorT=1 (pink/red), fade out
+          drawStar({ ctx, star, moveT: 1, colorT: 1, globalAlpha: star.opacity, scrollOffset }) // moveT=1 (end), colorT=1 (pink/red), fade out
           if (fadeT >= 1) {
             Object.assign(star, createStar(t, w, h, minDuration, maxDuration))
           }
@@ -208,25 +231,8 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
     }
   }, [count, minDuration, maxDuration])
 
-  useEffect(() => {
-    // here use gsap scrollTrigger to move the canvas up/down with scroll. import and register scroll plugin if needed
-    //
-    gsap.to(canvasRef.current, {
-      yPercent: -30,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-      },
-    })
-  }, [])
-
   return (
-    <div className="fixed top-0 left-0 -z-5 h-svh w-svw overflow-hidden">
-      <canvas ref={canvasRef} className="pointer-events-none h-16/10 w-full" aria-hidden="true" />
-    </div>
+    <canvas ref={canvasRef} className="pointer-events-none fixed top-0 left-0 -z-5 h-svh w-svw" aria-hidden="true" />
   )
 }
 

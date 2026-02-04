@@ -36,10 +36,13 @@ export default function PageAnimations() {
       .selector(document.body)('.bg-image')
       .forEach((img) => {
         gsap.to(img, {
-          y: gsap.utils.random(10, 30),
-          yoyo: true,
-          repeat: -1,
-          duration: 8,
+          y: 50,
+          scrollTrigger: {
+            trigger: img,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 2,
+          },
         })
       })
   }, [])
