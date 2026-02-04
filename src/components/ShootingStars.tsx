@@ -17,7 +17,7 @@ const LINE_WIDTH = 4
 const COLOR_START = [255, 100, 103] as const // red
 const COLOR_END = [255, 255, 255] as const // white
 
-const MAX_SCROLL_OFFSET = -400 // px
+const MAX_SCROLL_OFFSET = -800 // px
 
 type Star = {
   x: number

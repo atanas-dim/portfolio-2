@@ -49,6 +49,7 @@ export default function HomePage() {
             role="presentation"
             src={planet1Img}
             alt=""
+            data-parallax="150"
             className="bg-image absolute top-10 -right-40 -z-1 size-100 object-contain md:-right-20 lg:-right-10 xl:top-5 xl:-right-35 xl:size-120 2xl:-right-60"
             quality={100}
           />
@@ -97,6 +98,7 @@ export default function HomePage() {
             role="presentation"
             src={planet2Img}
             alt=""
+            data-parallax="150"
             className="bg-image absolute top-10 -left-40 -z-1 size-80 object-contain md:-left-50 lg:-left-60 xl:top-5 xl:-left-70 xl:size-100 2xl:-left-80"
             quality={100}
           />
@@ -122,6 +124,7 @@ export default function HomePage() {
             role="presentation"
             src={planet3Img}
             alt=""
+            data-parallax="75"
             className="bg-image absolute top-50 -right-40 -z-1 size-90 object-contain sm:-top-70 md:-right-50 lg:-right-60 xl:-top-100 xl:-right-70 xl:size-120 2xl:-right-80"
             quality={100}
           />
@@ -134,6 +137,7 @@ export default function HomePage() {
             role="presentation"
             src={marsImg}
             alt=""
+            data-parallax="40"
             className="bg-image h-full w-full max-w-[1920px] scale-115 object-contain xl:scale-100"
             quality={100}
             priority

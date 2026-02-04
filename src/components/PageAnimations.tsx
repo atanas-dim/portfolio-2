@@ -35,8 +35,10 @@ export default function PageAnimations() {
     gsap.utils
       .selector(document.body)('.bg-image')
       .forEach((img) => {
+        const parallax = parseFloat(img.getAttribute('data-parallax') || '1')
+
         gsap.to(img, {
-          y: 50,
+          y: parallax,
           scrollTrigger: {
             trigger: img,
             start: 'top bottom',
