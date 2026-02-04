@@ -17,7 +17,7 @@ const LINE_WIDTH = 4
 const COLOR_START = [255, 100, 103] as const // red
 const COLOR_END = [255, 255, 255] as const // white
 
-const MAX_SCROLL_OFFSET = -800 // px
+const MAX_SCROLL_OFFSET = 800 // px
 
 type Star = {
   x: number
@@ -84,15 +84,29 @@ const drawStar = ({
   ctx.restore()
 }
 
-const createStar = (now: number, w: number, h: number, minDuration: number, maxDuration: number): Star => {
+const createStar = ({
+  now,
+  w,
+  h,
+  minDuration,
+  maxDuration,
+  scrollOffset,
+}: {
+  now: number
+  w: number
+  h: number
+  minDuration: number
+  maxDuration: number
+  scrollOffset: number
+}): Star => {
   const angle = Math.random() * 2 * Math.PI
   const maxDistance = Math.min(w, h) * 0.5
   const dx = Math.cos(angle) * maxDistance
   const dy = Math.sin(angle) * maxDistance
   const startX = Math.random() * w
-  const startY = Math.random() * h
+  const startY = Math.random() * h - scrollOffset
   const endX = Math.min(Math.max(startX + dx, 0), w)
-  const endY = Math.min(Math.max(startY + dy, 0), h)
+  const endY = Math.min(Math.max(startY + dy, 0), h - scrollOffset)
   // const movementDistance = Math.sqrt(dx * dx + dy * dy)
   const duration = lerp(minDuration, maxDuration, Math.random()) * 1000
   const delay = Math.random() * 6000
@@ -127,7 +141,7 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
         trigger: document.body,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.5,
+        scrub: 0.25,
       },
     })
   }, [])
@@ -136,6 +150,11 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
     const w = canvasRef.current?.clientWidth || window.innerWidth
     const h = canvasRef.current?.clientHeight || window.innerHeight
     return { w, h }
+  }
+
+  const getScrollOffset = () => {
+    const maxScrollOffset = Math.min(window.innerHeight, MAX_SCROLL_OFFSET)
+    return scrollProgressRef.current.value * maxScrollOffset * -1 // invert direction
   }
 
   useEffect(() => {
@@ -151,9 +170,13 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
 
     ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0)
 
+    const scrollOffset = getScrollOffset()
+
     // Initialize stars
     const now = performance.now()
-    starsRef.current = Array.from({ length: count }, () => createStar(now, w, h, minDuration, maxDuration))
+    starsRef.current = Array.from({ length: count }, () =>
+      createStar({ now, w, h, minDuration, maxDuration, scrollOffset }),
+    )
 
     let lastFrameTime = now
 
@@ -171,7 +194,7 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
 
       ctx.clearRect(0, 0, w, h)
 
-      const scrollOffset = scrollProgressRef.current.value * MAX_SCROLL_OFFSET
+      const scrollOffset = getScrollOffset()
 
       for (const star of starsRef.current) {
         const elapsed = t - star.startTime
@@ -208,7 +231,7 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
           star.opacity = 1 - fadeT
           drawStar({ ctx, star, moveT: 1, colorT: 1, globalAlpha: star.opacity, scrollOffset }) // moveT=1 (end), colorT=1 (pink/red), fade out
           if (fadeT >= 1) {
-            Object.assign(star, createStar(t, w, h, minDuration, maxDuration))
+            Object.assign(star, createStar({ now: t, w, h, minDuration, maxDuration, scrollOffset }))
           }
         }
       }
