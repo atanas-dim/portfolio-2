@@ -8,7 +8,7 @@ type ShootingStarsProps = {
   maxDuration?: number
 }
 
-const FPS = 30
+const FPS = 60
 const FRAME_INTERVAL = 1000 / FPS
 
 const MIN_STAR_LENGTH = 80
@@ -141,7 +141,7 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
         trigger: document.body,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.25,
+        scrub: true,
       },
     })
   }, [])
