@@ -192,9 +192,10 @@ const ShootingStars: FC<ShootingStarsProps> = ({ count = 3, minDuration = 7, max
 
       lastFrameTime = t - (elapsed % FRAME_INTERVAL)
 
+      const { w, h } = getCanvasSize() // Get new values on every frame to handle resizes
       ctx.clearRect(0, 0, w, h)
 
-      const scrollOffset = getScrollOffset()
+      const scrollOffset = getScrollOffset() // Get new values on every frame to handle resizes
 
       for (const star of starsRef.current) {
         const elapsed = t - star.startTime
