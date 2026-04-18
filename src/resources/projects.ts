@@ -1,9 +1,6 @@
 import { StaticImageData } from 'next/image'
 
 import earthImg from '@/assets/images/3d-earth.jpg'
-import searchingMapboxImg from '@/assets/images/mapbox-search.jpg'
-import shadersPlaygroundImg from '@/assets/images/shaders-playground.jpg'
-import tiledImageLoaderImg from '@/assets/images/tiled-image-loader.jpg'
 import calendarImg from '@/assets/images/react-grid-calendar.jpg'
 import nextLocalisationImg from '@/assets/images/next-localisation.jpg'
 import workoutDirectoryImg from '@/assets/images/workout-directory.jpg'
@@ -66,39 +63,6 @@ export const PROJECTS: ProjectDef[] = [
     links: [
       { label: 'Code', href: 'https://github.com/atanas-dim/react-grid-calendar' },
       { label: 'Live', href: 'https://react-grid-calendar.vercel.app/' },
-    ],
-  },
-  {
-    image: tiledImageLoaderImg,
-    title: 'Tiled Image Loader',
-    technologies: 'Next.js, TypeScript, TailwindCSS',
-    description:
-      'Efficiently loads and displays large images in tiles, enabling smooth zooming and panning without long waits. Originally built for a mini competition game, it’s useful for exploring detailed graphics, maps, or blueprints.',
-    links: [
-      { label: 'Code', href: 'https://github.com/atanas-dim/tiled-image-loader' },
-      { label: 'Live', href: 'https://tiled-image-loader.vercel.app/' },
-    ],
-  },
-  {
-    image: shadersPlaygroundImg,
-    title: 'Shaders Playground',
-    technologies: 'Next.js, TypeScript, Three.js, GLSL',
-    description:
-      'An experimental playground for graphics with GLSL shaders. Explores vertex and fragment shaders to create wavy fabric-like motion and water surface effects, showcasing how custom shaders can add dynamic realism to 3D scenes.',
-    links: [
-      { label: 'Code', href: 'https://github.com/atanas-dim/shaders-playground' },
-      { label: 'Live', href: 'https://shaders-playground-psi.vercel.app/' },
-    ],
-  },
-  {
-    image: searchingMapboxImg,
-    title: 'Searching Mapbox',
-    technologies: 'React, TypeScript, Mapbox GL, SASS',
-    description:
-      'An interactive map with a custom search bar, built on Mapbox GL. Demonstrates location search functionality with a styled React UI, making it easy to find and visualise places on the map while experimenting with Mapbox’s core features.',
-    links: [
-      { label: 'Code', href: 'https://github.com/atanas-dim/searching-mapbox' },
-      { label: 'Live', href: 'https://searching-mapbox.netlify.app/' },
     ],
   },
 ]
